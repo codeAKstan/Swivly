@@ -1,0 +1,106 @@
+{% extends "registration/base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section class="hero">
+    <div class="hero-container">
+        <h2>Campus Marketplace For Accommodations And More</h2>
+        <p>Search accommodations, buy, sell your new or used properties and connect with ease the student way
+        </p>
+        <div class="cta-buttons">
+            <button class="btn primary">List Your Property</button>
+            <button class="btn secondary">Explore Now</button>
+        </div>
+    </div>
+</section>
+<section class="shop-section">
+    <div class="shop-container">
+        <aside class="filter-sidebar">
+            <h3>SHOP BY</h3>
+            <div class="filter-group">
+                <h4>Categories</h4>
+                <label><input type="radio" name="category" value="all" checked> All</label>
+                <label><input type="radio" name="category" value="marketplace"> Marketplace</label>
+                <label><input type="radio" name="category" value="accommodation"> Accommodation</label>
+            </div>
+            <div class="filter-group">
+                <h4>By Location</h4>
+                <select>
+                    <option>Select a university in Nigeria</option>
+                    <option>University of Nigeria</option>
+                    <!-- more locations soon -->
+                </select>
+                <input type="text" placeholder="Region in the University">
+            </div>
+        </aside>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="{% static 'img/mattress.png' %}" alt="Spring Mattress">
+                <h5>Spring Mattress</h5>
+                <p>Barely used 180-200cm</p>
+                <p class="price">₦75,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/chair.png' %}" alt="Work Chair Staff">
+                <h5>Work Chair Staff</h5>
+                <p>Ecos SKM 3903 Office Chair</p>
+                <p class="price">₦45,700.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/laptop.png' %}" alt="Lenovo IdeaPad">
+                <h5>Lenovo IdeaPad</h5>
+                <p>Core i3, 4GB, 256GB SSD</p>
+                <p class="price">₦110,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/harddisk.png' %}" alt="ssd harddisk">
+                <h5>Laptop Internal SSD</h5>
+                <p>Barely used 500gb 2TB SSD</p>
+                <p class="price">₦110,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/fan.png' %}" alt="Electric fan">
+                <h5>Portable Desktop Fan</h5>
+                <p>Barely used USB small fan</p>
+                <p class="price">₦110,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/gas.png' %}" alt="Electric cooker">
+                <h5>Electric Cooker</h5>
+                <p>Fast electric cooker</p>
+                <p class="price">₦56,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/table.png' %}" alt="table">
+                <h5>Plastic Durable Table</h5>
+                <p>Barely used plastic Durable Table</p>
+                <p class="price">₦15,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/iron.png' %}" alt="Electric iron">
+                <h5>Electric Dry Iron</h5>
+                <p>Philips Classic Dry Iron</p>
+                <p class="price">₦19,000.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+            <div class="product-card">
+                <img src="{% static 'img/hairclipper.png' %}" alt="hair clipper">
+                <h5>Hair Clipper</h5>
+                <p>Electric Hair clipper</p>
+                <p class="price">₦12,280.00</p>
+                <button class="btn shop-now">Shop Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

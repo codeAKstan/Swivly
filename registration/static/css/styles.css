@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #625aff;
+}
+
+.header {
+    background-color: #1e1e2f;
+    color: white;
+    padding: 1rem;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    display: inline;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.auth .btn {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.auth .btn.login {
+    background-color: white;
+    color: #6666ff;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.auth .btn.signup {
+    background-color: #C3F904;
+    color: #000;
+    border-radius: 30px;
+}
+
+.hero {
+    background-image: url('/static/img/background.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    padding: 20rem 7rem;
+}
+
+.hero-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons .btn {
+    margin: 0 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cta-buttons .btn.primary {
+    background-color: #C3F904;
+    color: #000;
+}
+
+.cta-buttons .btn.secondary {
+    background-color: #fff;
+    color: #6666ff;
+}
+
+.shop-section {
+    display: flex;
+    padding: 2rem;
+    background-color: #625aff;
+}
+
+.shop-container {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.filter-sidebar {
+    background-color: #625aff;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 25%;
+}
+
+.filter-sidebar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-group h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.filter-group select,
+.filter-group input {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+}
+
+
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    flex: 1;
+    background-color: white;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(97, 117, 202, 0.1);
+    text-align: center;
+    padding: 1rem;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-card h5 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.product-card .price {
+    color: #3cb371;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.product-card .btn {
+    background-color: #3cb371;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
