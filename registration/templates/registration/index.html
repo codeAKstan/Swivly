@@ -17,7 +17,8 @@
 <section class="shop-section">
     <div class="shop-container">
         <aside class="filter-sidebar">
-            <h3>SHOP BY</h3>
+            <!-- <h3>SHOP BY</h3> -->
+            <button>SHOP BY</button>
             <div class="filter-group">
                 <h4>Categories</h4>
                 <label><input type="radio" name="category" value="all" checked> All</label>
@@ -37,68 +38,120 @@
 
         <div class="products-grid">
             <div class="product-card">
-                <img src="{% static 'img/mattress.png' %}" alt="Spring Mattress">
-                <h5>Spring Mattress</h5>
-                <p>Barely used 180-200cm</p>
-                <p class="price">₦75,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/mattress.png' %}" alt="Spring Mattress">
+                </div>
+                <div class="content">
+                    <h3>Spring Mattress</h3>
+                    <p>Barely used 180 × 200cm</p>
+                    <div class="price">
+                        <span>₦75,000.00</span>
+                    </div>
+
+                </div>
             </div>
             <div class="product-card">
-                <img src="{% static 'img/chair.png' %}" alt="Work Chair Staff">
-                <h5>Work Chair Staff</h5>
-                <p>Ecos SKM 3903 Office Chair</p>
-                <p class="price">₦45,700.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/chair.png' %}" alt="chair">
+                </div>
+                <div class="content">
+                    <h5>Work Chair Staff</h5>
+                    <p>Ecos SKM 3903 Office Chair</p>
+                    <p class="price">₦45,700.00</p>
+                </div>
             </div>
             <div class="product-card">
-                <img src="{% static 'img/laptop.png' %}" alt="Lenovo IdeaPad">
-                <h5>Lenovo IdeaPad</h5>
-                <p>Core i3, 4GB, 256GB SSD</p>
-                <p class="price">₦110,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/laptop.png' %}" alt="Lenovo IdeaPad">
+                </div>
+                <div class="content">
+                    <h5>Lenovo IdeaPad</h5>
+                    <p>Core i3, 4GB, 256GB SSD</p>
+                    <p class="price">₦110,000.00</p>
+                </div>
+
             </div>
             <div class="product-card">
-                <img src="{% static 'img/harddisk.png' %}" alt="ssd harddisk">
-                <h5>Laptop Internal SSD</h5>
-                <p>Barely used 500gb 2TB SSD</p>
-                <p class="price">₦110,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/harddisk.png' %}" alt="ssd harddisk">
+                </div>
+                <div class="content">
+                    <h5>Laptop Internal SSD</h5>
+                    <p>Barely used 500gb 2TB SSD</p>
+                    <p class="price">₦110,000.00</p>
+                </div>
+
             </div>
             <div class="product-card">
-                <img src="{% static 'img/fan.png' %}" alt="Electric fan">
-                <h5>Portable Desktop Fan</h5>
-                <p>Barely used USB small fan</p>
-                <p class="price">₦110,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/fan.png' %}" alt="Electric fan">
+                </div>
+                <div class="content">
+                    <h5>Portable Desktop Fan</h5>
+                    <p>Barely used USB small fan</p>
+                    <p class="price">₦110,000.00</p>
+                </div>
+
             </div>
             <div class="product-card">
-                <img src="{% static 'img/gas.png' %}" alt="Electric cooker">
-                <h5>Electric Cooker</h5>
-                <p>Fast electric cooker</p>
-                <p class="price">₦56,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
+                <div class="img-container">
+                    <img src="{% static 'img/gas.png' %}" alt="Electric cooker">
+                </div>
+                <div class="content">
+                    <h5>Electric Cooker</h5>
+                    <p>Fast electric cooker</p>
+                    <p class="price">₦56,000.00</p>
+                </div>
+
             </div>
-            <div class="product-card">
+            <!-- <div class="product-card">
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
                 <img src="{% static 'img/table.png' %}" alt="table">
                 <h5>Plastic Durable Table</h5>
                 <p>Barely used plastic Durable Table</p>
                 <p class="price">₦15,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
-            </div>
-            <div class="product-card">
+                
+            </div> -->
+            <!-- <div class="product-card">
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
                 <img src="{% static 'img/iron.png' %}" alt="Electric iron">
                 <h5>Electric Dry Iron</h5>
                 <p>Philips Classic Dry Iron</p>
                 <p class="price">₦19,000.00</p>
-                <button class="btn shop-now">Shop Now</button>
-            </div>
-            <div class="product-card">
+                
+            </div> -->
+            <!-- <div class="product-card">
+                <div class="curve">
+                    <div class="badge">SHOP NOW</div>
+                </div>
                 <img src="{% static 'img/hairclipper.png' %}" alt="hair clipper">
                 <h5>Hair Clipper</h5>
                 <p>Electric Hair clipper</p>
                 <p class="price">₦12,280.00</p>
-                <button class="btn shop-now">Shop Now</button>
-            </div>
+                
+            </div> -->
         </div>
     </div>
 </section>
