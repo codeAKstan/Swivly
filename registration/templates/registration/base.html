@@ -8,6 +8,7 @@
     <title>Campus Marketplace</title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <script src="{% static 'js/scripts.js' %}"></script>
 
 </head>
 
@@ -24,8 +25,17 @@
                 <a href="#">Accommodation</a>
                 <a href="#">Contact Us</a>
                 <div class="auth">
+                    <div class="signup-dropdown">
+                        <button class="btn cart" id="signup-btn">Sign Up <span class="arrow">▼</span></button>
+                        <div class="dropdown-menu">
+                            <a href="/signup-agent" class="dropdown-item">Agent</a>
+                            <a href="/signup-buyer" class="dropdown-item">Buyer</a>
+                            <a href="/signup-seller" class="dropdown-item">Seller</a>
+                        </div>
+                    </div>
                     <button class="btn login">Log In</button>
-                    <button class="btn cart"><img src="{% static 'img/cart.png' %}" alt="cart"> Cart</button>
+
+                    <!-- <button class="btn cart"><img src="{% static 'img/cart.png' %}" alt="cart"> Cart</button> -->
                 </div>
             </nav>
         </div>
@@ -36,6 +46,8 @@
 
         {% endblock %}
     </main>
+
+
 </body>
 
 </html>
