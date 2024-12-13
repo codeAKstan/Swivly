@@ -286,6 +286,64 @@
         </div>
     </div>
 </section>
+<!-- newsletter -->
+<section class="newsletter-container">
+    <div class="left-div">
+        <h1>Ready to List Properties Faster?</h1>
+        <p>Subscribe our newsletter to get the latest updates and offers.</p>
+        <div class="newsletter">
+            <form class="newsletter-form" action="/subscribe" method="POST">
+                <input type="email" name="email" placeholder="Enter your email here" required />
+                <button type="submit">➤</button>
+            </form>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="agree">
+            <label for="agree">
+                I agree to receive latest updates and offers.<br>
+                I understand that I can unsubscribe at any time<br>
+                <a href="#">Privacy Policy</a>
+            </label>
+        </div>
+        <div class="logo">
+            <img src="{% static 'img/logo-foot.png' %}" alt="Logo">
+        </div>
+    </div>
+
+    <div class="right-div">
+        <button>List Your Property</button>
+        <button>Explore Now</button>
+
+        <ul>
+            <li><a href="/marketplace">About Us</a></li>
+            <li><a href="/marketplace">MarketPlace</a></li>
+            <li><a href="/accommodation">Accommodation</a></li>
+        </ul>
+        <ul>
+            <li><a href="/faqs">FAQs</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms and Conditions</a></li>
+        </ul>
+
+        <div class="social">
+            <img src="{% static 'img/ig.png' %}" alt="Instagram">
+            <img src="{% static 'img/fb.png' %}" alt="Facebook">
+            <img src="{% static 'img/x.png' %}" alt="Twitter">
+            <img src="{% static 'img/Frame.png' %}" alt="tel">
+        </div>
+        <!-- <div class="contact-info">
+            +234 805 292 3367
+        </div> -->
+    </div>
+</section>
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+        <p>MADE WITH ❤️ FROM US TO ALL NIGERIA STUDENTS</p>
+    </div>
+</footer>
+
 <!-- faq dropdown functionality -->
 <script>
     document.querySelectorAll('.faq-question').forEach((button) => {

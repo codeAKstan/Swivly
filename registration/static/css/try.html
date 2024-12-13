@@ -4,203 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swivly Trusted Marketplace</title>
+    <title>Newsletter Section</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-image: url('../img/footer-bg.png');
+            background-size: cover;
+            background-position: center;
         }
 
-        .trusted-marketplace {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
+        .newsletter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 50px;
+            color: white;
+            height: 100vh;
         }
 
-        .trusted-marketplace h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .left-div {
+            width: 50%;
+        }
+
+        .right-div {
+            width: 40%;
+            text-align: right;
+        }
+
+        .left-div h1 {
+            font-size: 3rem;
             margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .trusted-marketplace .highlight {
-            background-color: #a76dfa;
-            color: #fff;
-            padding: 0 8px;
-            border-radius: 4px;
+        .left-div p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
         }
 
-        .trusted-marketplace p {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            color: #555;
+        .newsletter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .testimonials {
+        .newsletter input {
+            width: 70%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .newsletter button {
+            background-color: #6c63ff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox label {
+            line-height: 1.4;
+        }
+
+        .checkbox a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        .logo {
+            margin-top: 40px;
+        }
+
+        .logo img {
+            width: 60px;
+        }
+
+        .right-div button {
+            display: block;
+            margin-bottom: 15px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .right-div button:first-child {
+            background-color: #c3ff6f;
+        }
+
+        .right-div button:last-child {
+            background-color: #e6e6ff;
+        }
+
+        .right-div ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .right-div ul li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .social img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-info {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .newsletter-form {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            position: relative;
         }
 
-        .testimonial {
-            background-color: #f1f1ff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 30%;
-            text-align: left;
-            font-size: 0.95rem;
-            position: relative;
+        .newsletter-form input {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-bottom: solid black 2px;
+            border-radius: 5px 0 0 5px;
+            width: 70%;
+            background-color: transparent;
+            outline: none;
         }
 
-        .testimonial-left {
-            background-color: #d4cfff;
-            transform: translateY(20px);
-        }
-
-        .testimonial-center {
-            background-color: #e0d7ff;
-            transform: translateY(-10px);
-        }
-
-        .testimonial-right {
-            background-color: #f1eaff;
-            transform: translateY(20px);
-        }
-
-        .testimonial p {
-            margin-bottom: 20px;
-            color: #444;
-        }
-
-        .testimonial .author {
-            display: flex;
-            align-items: center;
-        }
-
-        .testimonial .author img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .testimonial .author span {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .testimonial .author small {
-            display: block;
-            font-weight: normal;
-            color: #777;
-        }
-
-
-        .testimonial:hover {
-            transform: translateY(-10px);
-            /* Moves the card up by 10px */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Adds a subtle shadow on hover */
-        }
-
-
-        @media screen and (max-width: 768px) {
-            .testimonials {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .testimonial {
-                max-width: 90%;
-                margin-bottom: 20px;
-            }
-
-            .testimonial-left,
-            .testimonial-center,
-            .testimonial-right {
-                transform: translateY(0);
-            }
+        .newsletter-form button {
+            padding: 0.8rem 1.2rem;
+            background-color: transparent;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 1rem;
         }
     </style>
 </head>
 
 <body>
-    <section class="trusted-marketplace">
-        <h1>Your Trusted MarketPlace<br><span>The <span class="highlight">Student</span> way</span></h1>
-        <p>
-            At Swivly, we understand the unique challenges students face when searching for accommodations or reliable
-            marketplaces.
-            That’s why we’re committed to providing a unique platform that prioritizes trust, security, and convenience.
-            Our verified listings ensure you’re only viewing authentic and accurate options, giving you peace of mind.
-            With secure payment methods and a seamless transaction process, buying, selling, or renting has never been
-            easier.
-            Plus, our community-driven approach lets you rely on real reviews and ratings from fellow students,
-            creating a trustworthy environment where connections thrive. Your journey deserves simplicity and
-            reliability.
-        </p>
-        <div class="testimonials">
-            <div class="testimonial testimonial-left">
-                <p>
-                    I’ve always had a hard time selling my used items online because it has been so difficult to connect
-                    with trustworthy buyers.
-                    That’s why I decided to try Swivly and it turned out to be the best decision! The platform is very
-                    user-friendly, and within minutes,
-                    I was able to list some pre-loved furniture I did not need anymore. What amazed me was how quickly I
-                    started getting inquiries from
-                    interested buyers. The secure transaction process is really amazing, everything went smoothly. I
-                    really recommend this platform to
-                    other students who have items for sale!
-                </p>
-                <div class="author">
-                    <img src="avatar1.jpg" alt="Emeka Onuoha">
-                    <span>Emeka Onuoha<br><small>Student - University of Nigeria Nsukka</small></span>
-                </div>
+    <section class="newsletter-container">
+        <div class="left-div">
+            <h1>Ready to List Properties Faster?</h1>
+            <p>Subscribe our newsletter to get the latest updates and offers.</p>
+            <div class="newsletter">
+                <form class="newsletter-form" action="/subscribe" method="POST">
+                    <input type="email" name="email" placeholder="Enter your email here" required />
+                    <button type="submit">➤</button>
+                </form>
             </div>
-            <div class="testimonial testimonial-center">
-                <p>
-                    Finding a safe and affordable place near campus used to be stressful, especially with so many
-                    unreliable options out there.
-                    But Swivly completely changed the game for me. The platform’s verified listings and detailed
-                    descriptions gave me peace of mind,
-                    knowing I was only viewing legitimate options. Within just a week, I found a perfect apartment close
-                    to campus with all the
-                    amenities I needed. The process was smooth, and the secure payment options made it even better. I
-                    couldn’t be happier.
-                    Honestly, I really recommend this platform.
-                </p>
-                <div class="author">
-                    <img src="avatar2.jpg" alt="Nzeakor Ujunwa">
-                    <span>Nzeakor Ujunwa<br><small>Student - Covenant University</small></span>
-                </div>
+            <div class="checkbox">
+                <input type="checkbox" id="agree">
+                <label for="agree">
+                    I agree to receive latest updates and offers.<br>
+                    I understand that I can unsubscribe at any time<br>
+                    <a href="#">Privacy Policy</a>
+                </label>
             </div>
-            <div class="testimonial testimonial-right">
-                <p>
-                    As a student agent, connecting with potential tenants and managing listings can be very
-                    overwhelming. Swivly has really made
-                    work so much easier. The trust ratings have also been a game changer, helping me build credibility
-                    and attract more clients.
-                    I’ve been able to successfully match tenants to properties quickly, which has boosted my reputation
-                    on campus. This platform
-                    has not only simplified my workflow but also strengthened my relationships with both landlords and
-                    students. It’s a valuable
-                    resource for any student agent.
-                </p>
-                <div class="author">
-                    <img src="avatar3.jpg" alt="Gerald Zebelone">
-                    <span>Gerald Zebelone<br><small>Student - University of Lagos</small></span>
-                </div>
+            <div class="logo">
+                <img src="../img/logo-foot.png" alt="Logo">
+            </div>
+        </div>
+
+        <div class="right-div">
+            <button>List Your Property</button>
+            <button>Explore Now</button>
+
+            <ul>
+                <li>About Us</li>
+                <li>Marketplace</li>
+                <li>Accommodation</li>
+                <li>FAQs</li>
+                <li>Privacy Policy</li>
+                <li>Terms and Conditions</li>
+            </ul>
+
+            <div class="social">
+                <img src="../img/fb.png" alt="Instagram">
+                <img src="../img/fb.png" alt="Facebook">
+                <img src="../img/fb.png" alt="Twitter">
+                <img src="../img/fb.png" alt="WhatsApp">
+            </div>
+            <div class="contact-info">
+                +234 805 292 3367
             </div>
         </div>
     </section>
-
 </body>
 
 </html>
