@@ -17,9 +17,11 @@
         <div class="container">
             <div class="logo">
                 <img src="{% static 'img/logo.png' %}" alt="Swivly Logo">
-                <!-- <h1>Swivly</h1> -->
             </div>
-            <nav class="nav">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+            <nav class="nav" id="nav-menu">
                 <a href="{% url 'registration:index' %}">Home</a>
                 <a href="#">Market Place</a>
                 <a href="#">Accommodation</a>
@@ -34,12 +36,12 @@
                         </div>
                     </div>
                     <button class="btn login">Log In</button>
-
-                    <!-- <button class="btn cart"><img src="{% static 'img/cart.png' %}" alt="cart"> Cart</button> -->
                 </div>
             </nav>
         </div>
     </header>
+
+
     <main>
         {% block content %}
 
@@ -59,6 +61,25 @@
         document.addEventListener('click', () => {
             dropdown.classList.remove('active');
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            // Toggle the menu visibility
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close the menu when clicking outside (optional)
+            document.addEventListener('click', (event) => {
+                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+
     </script>
 </body>
 
