@@ -4,217 +4,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletter Section</title>
+    <title>Sign Up</title>
     <style>
+        /* General Styles */
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('../img/footer-bg.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .newsletter-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 50px;
-            color: white;
-            height: 100vh;
-        }
-
-        .left-div {
-            width: 50%;
-        }
-
-        .right-div {
-            width: 40%;
-            text-align: right;
-        }
-
-        .left-div h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .left-div p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
-        .newsletter {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .newsletter input {
-            width: 70%;
-            padding: 12px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .newsletter button {
-            background-color: #6c63ff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .checkbox label {
-            line-height: 1.4;
-        }
-
-        .checkbox a {
-            color: #6c63ff;
-            text-decoration: none;
-        }
-
-        .logo {
-            margin-top: 40px;
-        }
-
-        .logo img {
-            width: 60px;
-        }
-
-        .right-div button {
-            display: block;
-            margin-bottom: 15px;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .right-div button:first-child {
-            background-color: #c3ff6f;
-        }
-
-        .right-div button:last-child {
-            background-color: #e6e6ff;
-        }
-
-        .right-div ul {
-            list-style: none;
+            margin: 0;
             padding: 0;
-            text-align: left;
-            margin-top: 30px;
-        }
-
-        .right-div ul li {
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .social {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 30px;
-        }
-
-        .social img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .contact-info {
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-
-        .newsletter-form {
+            background-color: #f9f9f9;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
         }
 
-        .newsletter-form input {
-            padding: 0.8rem 1rem;
+        /* Signup Container */
+        .signup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .signup-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .signup-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-card p {
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form Styles */
+        form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
-            border: none;
-            border-bottom: solid black 2px;
-            border-radius: 5px 0 0 5px;
-            width: 70%;
-            background-color: transparent;
-            outline: none;
+            box-sizing: border-box;
         }
 
-        .newsletter-form button {
-            padding: 0.8rem 1.2rem;
-            background-color: transparent;
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #3cb371;
+            outline: none;
+            box-shadow: 0 0 4px rgba(60, 179, 113, 0.3);
+        }
+
+        /* Button Styles */
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #3cb371;
             color: white;
             border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
+            border-radius: 5px;
             font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #2d914f;
+        }
+
+        /* Link Styles */
+        .login-link {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #3cb371;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <section class="newsletter-container">
-        <div class="left-div">
-            <h1>Ready to List Properties Faster?</h1>
-            <p>Subscribe our newsletter to get the latest updates and offers.</p>
-            <div class="newsletter">
-                <form class="newsletter-form" action="/subscribe" method="POST">
-                    <input type="email" name="email" placeholder="Enter your email here" required />
-                    <button type="submit">➤</button>
-                </form>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox" id="agree">
-                <label for="agree">
-                    I agree to receive latest updates and offers.<br>
-                    I understand that I can unsubscribe at any time<br>
-                    <a href="#">Privacy Policy</a>
-                </label>
-            </div>
-            <div class="logo">
-                <img src="../img/logo-foot.png" alt="Logo">
-            </div>
+    <div class="signup-container">
+        <div class="signup-card">
+            <h2>Sign Up</h2>
+            <p>Create your account to get started</p>
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Select Role</label>
+                    <select id="role" name="role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="agent">Agent</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">Sign Up</button>
+                </div>
+            </form>
+            <p class="login-link">Already have an account? <a href="/login">Log in</a></p>
         </div>
-
-        <div class="right-div">
-            <button>List Your Property</button>
-            <button>Explore Now</button>
-
-            <ul>
-                <li>About Us</li>
-                <li>Marketplace</li>
-                <li>Accommodation</li>
-                <li>FAQs</li>
-                <li>Privacy Policy</li>
-                <li>Terms and Conditions</li>
-            </ul>
-
-            <div class="social">
-                <img src="../img/fb.png" alt="Instagram">
-                <img src="../img/fb.png" alt="Facebook">
-                <img src="../img/fb.png" alt="Twitter">
-                <img src="../img/fb.png" alt="WhatsApp">
-            </div>
-            <div class="contact-info">
-                +234 805 292 3367
-            </div>
-        </div>
-    </section>
+    </div>
 </body>
 
 </html>

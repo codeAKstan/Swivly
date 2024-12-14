@@ -911,6 +911,7 @@ body {
     background-color: #1e1e2f;
     color: white;
     padding: 2rem 1rem;
+    bottom: 0;
 }
 
 .footer-container {
@@ -1068,4 +1069,98 @@ body {
     }
 
 
+}
+
+/* Signup Container */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.signup-card {
+    background: white;
+    padding: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.signup-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.signup-card p {
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3cb371;
+    outline: none;
+    box-shadow: 0 0 4px rgba(60, 179, 113, 0.3);
+}
+
+/* Button Styles */
+.btn-submit {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #C3F904;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #2d914f;
+}
+
+/* Link Styles */
+.login-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.login-link a {
+    color: #C3F904;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }
