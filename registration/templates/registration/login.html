@@ -6,18 +6,23 @@
     <div class="signup-card">
         <h2>Login</h2>
 
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'registration:login' %}">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" name="next" value="{{ next }}" />
 
             {% if form.errors %}
             <div class="form-errors">
                 {% for field, errors in form.errors.items %}
-                <p>{{ field }}: {{ errors|join:", " }}</p>
+                <p>{{ errors|join:", " }}</p>
                 {% endfor %}
             </div>
             {% endif %}
+
+            {% if new_user %}
+            <p>Account created successfully! Please log in to continue.</p>
+            {% endif %}
+
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
 
             <button type="submit" class="btn-submit">Login</button>
             <p><a href="{% url 'registration:password_reset' %}">Forgotten password?</a></p>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegisterForm
 
 # Create your views here.
@@ -15,9 +16,11 @@ def register(request):
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
-            return render(request,
-                        'registration/login.html',
-                        {'new_user': new_user})
+            login_form = AuthenticationForm()
+            return render(request, 'registration/login.html', {'new_user': new_user, 'form': login_form})
+        else:
+            return render(request, 'registration/register.html',
+                      {'form':form})
     else:
         form = UserRegisterForm()
         return render(request, 'registration/register.html',

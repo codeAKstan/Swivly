@@ -10,7 +10,10 @@ class UserRegisterForm(forms.ModelForm):
         
     password = forms.CharField(widget=forms.PasswordInput, label='Password')
     cpassword = forms.CharField(widget=forms.PasswordInput, label='Confirm Password')
-    role = forms.ChoiceField(choices=ROLE_CHOICES, label='Role')
+    role = forms.ChoiceField(choices=ROLE_CHOICES, label='Role', required=True)
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=80, required=True)
+
     
 
     class Meta:
@@ -24,7 +27,7 @@ class UserRegisterForm(forms.ModelForm):
             'username': None,
         }
 
-    def clean_password(self):
+    def clean_cpassword(self):
         cd = self.cleaned_data
         if cd['password'] != cd['cpassword']:
             raise forms.ValidationError('Password must match')
