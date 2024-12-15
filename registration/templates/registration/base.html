@@ -27,18 +27,24 @@
                 <a href="#">Accommodation</a>
                 <a href="#">Contact Us</a>
                 <div class="auth">
+                    {% if user.is_authenticated %}
+                    <button class="btn login"
+                        onclick="window.location.href='{% url 'registration:profile' %}'">Profile</button>
+                    <button class="btn cart">Cart</button>
+                    {% else %}
                     <div class="signup-dropdown">
                         <button class="btn cart" id="signup-btn">Sign Up <span class="arrow">▼</span></button>
                         <div class="dropdown-menu">
-                            <a href="/register" class="dropdown-item">Agent</a>
-                            <a href="/register" class="dropdown-item">Buyer</a>
-                            <a href="/register" class="dropdown-item">Seller</a>
+                            <a href="/register?role=agent" class="dropdown-item">Agent</a>
+                            <a href="/register?role=buyer" class="dropdown-item">Buyer</a>
+                            <a href="/register?role=seller" class="dropdown-item">Seller</a>
                         </div>
                     </div>
                     <button class="btn login" onclick="window.location.href='{% url 'registration:login' %}'">Log
                         In</button>
-
+                    {% endif %}
                 </div>
+
             </nav>
         </div>
     </header>
