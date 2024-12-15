@@ -4,13 +4,12 @@
 {% block content %}
 <div class="signup-container">
     <div class="signup-card">
-        <h2>Sign Up</h2>
-        <p>Create your account to get started</p>
+        <h2>Login</h2>
 
         <form method="POST" action="">
             {% csrf_token %}
             {{ form.as_p }}
-
+            <input type="hidden" name="next" value="{{ next }}" />
 
             {% if form.errors %}
             <div class="form-errors">
@@ -20,10 +19,11 @@
             </div>
             {% endif %}
 
-            <button type="submit" class="btn-submit">Sign Up</button>
+            <button type="submit" class="btn-submit">Login</button>
+            <p><a href="{% url 'registration:password_reset' %}">Forgotten password?</a></p>
         </form>
 
-        <p class="login-link">Already have an account? <a href="{% url 'registration:login' %}">Log in</a></p>
+        <p class="login-link">Don't have an account? <a href="{% url 'registration:register' %}">Sign Up</a></p>
     </div>
 </div>
 {% endblock %}

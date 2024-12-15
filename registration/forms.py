@@ -16,10 +16,13 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'username',
             'first_name',
+            'username',
             'email'
         ]
+        help_texts = {
+            'username': None,
+        }
 
     def clean_password(self):
         cd = self.cleaned_data
