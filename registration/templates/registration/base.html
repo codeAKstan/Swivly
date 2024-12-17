@@ -5,20 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Marketplace - Buy, Sell, Rent, and Connect seamlessly.">
+    <meta name="keywords" content="campus, marketplace, buy, sell, rent, connect, student, ecommerce">
     <title>Campus Marketplace</title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
-    <!-- <script src="{% static 'js/scripts.js' %}"></script> -->
-
 </head>
 
 <body>
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="Swivly Logo">
+                <img src="{% static 'img/logo.png' %}" alt="Campus Marketplace Logo">
             </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 ☰
             </button>
             <nav class="nav" id="nav-menu">
@@ -35,59 +35,54 @@
                     <div class="signup-dropdown">
                         <button class="btn cart" id="signup-btn">Sign Up <span class="arrow">▼</span></button>
                         <div class="dropdown-menu">
-                            <a href="/register?role=agent" class="dropdown-item">Agent</a>
-                            <a href="/register?role=buyer" class="dropdown-item">Buyer</a>
-                            <a href="/register?role=seller" class="dropdown-item">Seller</a>
+                            <a href="{% url 'registration:register' %}?role=agent" class="dropdown-item">Agent</a>
+                            <a href="{% url 'registration:register' %}?role=buyer" class="dropdown-item">Buyer</a>
+                            <a href="{% url 'registration:register' %}?role=seller" class="dropdown-item">Seller</a>
                         </div>
                     </div>
                     <button class="btn login" onclick="window.location.href='{% url 'registration:login' %}'">Log
                         In</button>
                     {% endif %}
                 </div>
-
             </nav>
         </div>
     </header>
 
-
     <main>
         {% block content %}
-
-
+        <!-- Page-specific content goes here -->
         {% endblock %}
     </main>
 
+
     <script>
-        const signupButton = document.getElementById('signup-btn');
-        const dropdown = document.querySelector('.signup-dropdown');
-
-        signupButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('active');
-        });
-
-        document.addEventListener('click', () => {
-            dropdown.classList.remove('active');
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menu-toggle');
             const navMenu = document.getElementById('nav-menu');
+            const signupButton = document.getElementById('signup-btn');
+            const dropdown = document.querySelector('.signup-dropdown');
 
-            // Toggle the menu visibility
-            menuToggle.addEventListener('click', () => {
+            // Menu toggle functionality
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
                 navMenu.classList.toggle('active');
             });
 
-            // Close the menu when clicking outside (optional)
-            document.addEventListener('click', (event) => {
-                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                }
+            // Dropdown functionality
+            signupButton?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown?.classList.toggle('active');
+            });
+
+            // Close dropdown or menu on outside click
+            document.addEventListener('click', () => {
+                dropdown?.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
-
-
     </script>
 </body>
 
