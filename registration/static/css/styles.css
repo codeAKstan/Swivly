@@ -324,9 +324,9 @@ body {
 }
 
 .product-card .img-container {
-    background-image: url('/static/img/curve.png');
-    /* background-color: #fff; */
-    background-repeat: no-repeat;
+    /* background-image: url('/static/img/curve.png'); */
+    background-color: #fff;
+    /* background-repeat: no-repeat; */
     border-radius: 19px;
 }
 
@@ -1175,4 +1175,90 @@ form select:focus {
     border-radius: 5px;
     margin-bottom: 1rem;
     font-size: 0.9rem;
+}
+
+
+/* profile */
+.profile-container {
+    display: flex;
+    background: #f9f9f9;
+    padding: 2rem;
+}
+
+.profile-sidebar {
+    width: 25%;
+    background: #6666ff;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 2px solid #fff;
+}
+
+.profile-details p {
+    margin: 0.5rem 0;
+}
+
+.profile-actions .btn {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.5rem 1rem;
+    background: #C3F904;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.profile-actions .logout {
+    background: rgb(235, 52, 52);
+    color: white;
+}
+
+.profile-content {
+    width: 75%;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    margin-left: 1rem;
+}
+
+.profile-content h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.listings-summary,
+.purchase-history {
+    margin-bottom: 2rem;
+}
+
+.listings-summary p,
+.purchase-history li {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+.listings-summary .btn {
+    margin-right: 0.5rem;
+}
+
+.purchase-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.purchase-history li {
+    background: #f4f4f4;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
 }

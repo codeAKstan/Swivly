@@ -1,11 +1,52 @@
 {% extends "registration/base.html" %}
+{% load static %}
 {% block content %}
 <div class="profile-container">
-    <h2>Hi, {{ user.username }}!</h2>
-    <p>This is your profile page.</p>
-    <form method="post" action="{% url 'registration:logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+    <div class="profile-sidebar">
+        <div class="profile-image">
+            <!-- Placeholder for profile image -->
+            <img src="{% static 'img/man.png' %}" alt="Profile Image">
+        </div>
+        <div class="profile-details">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Role:</strong> {{ user.profile.role }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <div class="profile-actions">
+            <a href="{% url 'registration:password_change' %}" class="btn">Change Password</a>
+            <a href="{% url 'registration:logout' %}" class="btn logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Listings Summary (for Sellers or Agents) -->
+        {% if user.profile.role == "agent" or user.profile.role == "seller" %}
+        <section class="listings-summary">
+            <h2>Listings Summary</h2>
+            <p>Active Listings: {{ active_listings_count }}</p>
+            <p>Pending Listings: {{ pending_listings_count }}</p>
+            <a href="" class="btn">Manage Listings</a>
+            <a href="" class="btn primary">Add New Listing</a>
+        </section>
+        {% endif %}
+
+        <!-- Purchase and Rent History (for Buyers) -->
+        {% if user.profile.role == "buyer" %}
+        <section class="purchase-history">
+            <h2>Purchase and Rent History</h2>
+            <ul>
+                {% for transaction in transactions %}
+                <li>
+                    <p><strong>Item:</strong> {{ transaction.item_name }}</p>
+                    <p><strong>Date:</strong> {{ transaction.date }}</p>
+                    <p><strong>Status:</strong> {{ transaction.status }}</p>
+                </li>
+                {% empty %}
+                <p>No recent transactions available.</p>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
