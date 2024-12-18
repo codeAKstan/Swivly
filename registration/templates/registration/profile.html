@@ -3,6 +3,7 @@
 {% block content %}
 <div class="profile-container">
     <div class="profile-sidebar">
+        <a href="" class="edit-btn"><img src="{% static 'img/edit.png' %}" alt="Edit profile"></a>
         <div class="profile-image">
             <!-- Placeholder for profile image -->
             <img src="{% static 'img/man.png' %}" alt="Profile Image">
@@ -14,8 +15,12 @@
         </div>
         <div class="profile-actions">
             <a href="{% url 'registration:password_change' %}" class="btn">Change Password</a>
-            <a href="{% url 'registration:logout' %}" class="btn logout">Logout</a>
+            <form action="{% url 'registration:logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn logout">Logout</button>
+            </form>
         </div>
+
     </div>
 
     <div class="profile-content">
