@@ -133,3 +133,7 @@ LOGIN_REDIRECT_URL = 'registration:profile'
 LOGIN_URL = 'registration:login'
 LOGOUT_URL = 'registration:logout'
 LOGOUT_REDIRECT_URL = 'registration:login'
+
+# manage file uploads
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
