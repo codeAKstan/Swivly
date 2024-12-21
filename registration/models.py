@@ -13,7 +13,8 @@ class Profile(models.Model):
 
         user = models.OneToOneField(User, on_delete=models.CASCADE)
         role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='buyer')
-        photo = models.ImageField(upload_to='users/%Y/%m/%d')
+        photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
+        address = models.CharField(max_length=200, default='null')
 
         def __str__(self):
             return f'{self.user.username} Profile'
