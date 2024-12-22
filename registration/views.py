@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
-from .models import Listing, Transaction
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
+from .models import Listing, Transaction, Profile
+from django.contrib import messages
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def register(request):
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
             login_form = AuthenticationForm()
+            Profile.objects.create(user=new_user)
             return render(request, 'registration/login.html', {'new_user': new_user, 'form': login_form})
         else:
             return render(request, 'registration/register.html',
@@ -33,7 +35,7 @@ def register(request):
 
 @login_required
 def profile(request):
-    role = request.user.profile.role  # Assuming role is saved in a Profile model
+    role = request.user.profile.role
 
     # Data for sellers/agents
     if role in ["agent", "seller"]:
@@ -55,3 +57,23 @@ def profile(request):
         'expired_listings_count': expired_listings_count,
         'transactions': transactions
     })
+
+
+def edit(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        profile_form = ProfileEditForm(instance=request.user.profile,
+                                       data=request.POST, files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request, 'Error Updating Profile')
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileEditForm(instance=request.user.profile)
+        return render(request, 
+                  'registration/edit.html',
+                {'user_form': user_form,
+                'profile_form': profile_form})

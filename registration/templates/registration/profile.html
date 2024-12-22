@@ -3,7 +3,8 @@
 {% block content %}
 <div class="profile-container">
     <div class="profile-sidebar">
-        <a href="" class="edit-btn"><img src="{% static 'img/edit.png' %}" alt="Edit profile"></a>
+        <a href="{% url 'registration:edit' %}" class="edit-btn"><img src="{% static 'img/edit.png' %}"
+                alt="Edit profile"></a>
         <div class="profile-image">
             <!-- Placeholder for profile image -->
             <img src="{% static 'img/man.png' %}" alt="Profile Image">

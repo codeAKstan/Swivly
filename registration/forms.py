@@ -34,3 +34,14 @@ class UserRegisterForm(forms.ModelForm):
             # Save the role in the Profile model
             Profile.objects.create(user=user, role=self.cleaned_data['role'])
         return user
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'username', 'email']
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['address', 'photo']
