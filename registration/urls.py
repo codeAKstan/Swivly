@@ -6,6 +6,7 @@ app_name = 'swivly'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('about/', views.about_us, name='about'),
     path('register', views.register, name='register'),
     # path('login/', auth_views.LoginView.as_view(), name='login'),
     # path('logout/', auth_views.LogoutView.as_view(next_page='registration:login'), name='logout'),

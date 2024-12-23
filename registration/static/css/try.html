@@ -4,212 +4,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile UI</title>
+    <title>About Us - Swivly</title>
     <style>
-        * {
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .profile-container {
-            width: 350px;
-            background-color: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .profile-image {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            background-color: #ccc;
-        }
-
-        .profile-info {
-            flex-grow: 1;
-        }
-
-        .profile-name {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .profile-username {
-            font-size: 14px;
-            color: #888;
-        }
-
-        .edit-button {
-            background: none;
-            border: none;
-            font-size: 18px;
-            color: #555;
-            cursor: pointer;
-        }
-
-        .profile-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .option-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .option-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        .option-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .option-icon {
-            font-size: 18px;
-        }
-
-        .option-text {
-            font-size: 16px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
             color: #333;
         }
 
-        .option-alert {
-            color: #e63946;
+        h1,
+        h2,
+        h3 {
+            color: #4b0082;
         }
 
-        .option-arrow {
-            font-size: 16px;
-            color: #888;
+        ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 34px;
-            height: 20px;
+        a {
+            text-decoration: none;
         }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 20px;
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: 0.4s;
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sections */
+        .introduction,
+        .mission,
+        .features,
+        .team,
+        .cta {
+            margin-bottom: 40px;
+        }
+
+        .features ul li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        /* Team Section */
+        .team-members {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
         }
 
-        input:checked+.slider {
-            background-color: #4caf50;
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            background: #6a11cb;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
         }
 
-        input:checked+.slider:before {
-            transform: translateX(14px);
+        .cta .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #2575fc;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .cta .btn:hover {
+            background: #6a11cb;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: white;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
-    <div class="profile-container">
-        <div class="profile-header">
-            <img src="profile-image.jpg" alt="Profile Picture" class="profile-image">
-            <div class="profile-info">
-                <h2 class="profile-name">Itunuoluwa Abidoye</h2>
-                <p class="profile-username">@Itunuoluwa</p>
-                <button class="edit-button">✏️</button>
-            </div>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>About Swivly</h1>
+            <p>Your trusted platform for accommodations and student marketplaces.</p>
         </div>
-        <div class="profile-options">
-            <div class="option-item">
-                <div class="option-left">
-                    <span class="option-icon">👤</span>
-                    <p class="option-text">My Account</p>
+    </header>
+
+    <main class="main-content">
+        <!-- Introduction -->
+        <section class="introduction">
+            <h2>Who We Are</h2>
+            <p>Swivly is a platform built to simplify student life. Whether you're looking for a place to stay, buying
+                or selling items, or connecting with others in your community, Swivly is here to make it easier, safer,
+                and more transparent.</p>
+        </section>
+
+        <!-- Mission and Vision -->
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p>To empower students by providing an all-in-one platform that fosters trust, transparency, and convenience
+                in managing their daily needs.</p>
+            <h2>Our Vision</h2>
+            <p>We envision a world where students can seamlessly access trusted services and resources within their
+                communities.</p>
+        </section>
+
+        <!-- Key Features -->
+        <section class="features">
+            <h2>Why Choose Swivly?</h2>
+            <ul>
+                <li>Secure Marketplace</li>
+                <li>Verified Listings</li>
+                <li>In-App Messaging</li>
+                <li>Easy Payment Integration</li>
+                <li>Reviews and Ratings</li>
+            </ul>
+        </section>
+
+        <!-- Team -->
+        <section class="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="team1.jpg" alt="Team Member 1">
+                    <h3>John Doe</h3>
+                    <p>Founder & Developer</p>
                 </div>
-                <span class="option-alert">⚠️</span>
-            </div>
-            <div class="option-item">
-                <div class="option-left">
-                    <span class="option-icon">💳</span>
-                    <p class="option-text">Saved Beneficiary</p>
+                <div class="team-member">
+                    <img src="team2.jpg" alt="Team Member 2">
+                    <h3>Jane Smith</h3>
+                    <p>Marketing Lead</p>
                 </div>
-                <span class="option-arrow">➡️</span>
             </div>
-            <div class="option-item">
-                <div class="option-left">
-                    <span class="option-icon">🔒</span>
-                    <p class="option-text">Face ID / Touch ID</p>
-                </div>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="option-item">
-                <div class="option-left">
-                    <span class="option-icon">🔑</span>
-                    <p class="option-text">Two-Factor Authentication</p>
-                </div>
-                <span class="option-arrow">➡️</span>
-            </div>
-            <div class="option-item">
-                <div class="option-left">
-                    <span class="option-icon">🚪</span>
-                    <p class="option-text">Log out</p>
-                </div>
-                <span class="option-arrow">➡️</span>
-            </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <h2>Ready to Get Started?</h2>
+            <p>Join Swivly today and experience the easiest way to connect with trusted communities.</p>
+            <a href="signup.html" class="btn">Sign Up Now</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Swivly. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

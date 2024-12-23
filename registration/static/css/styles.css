@@ -1427,3 +1427,84 @@ form select:focus {
 .save-changes-btn:hover {
     background-color: #bcdf3d;
 }
+
+
+/* about us */
+.about-hero {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.introduction,
+.mission,
+.features,
+.team,
+.cta {
+    margin-bottom: 40px;
+}
+
+.features ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.team-members {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.cta {
+    text-align: center;
+    background: #6a11cb;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.cta .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #2575fc;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.cta .btn:hover {
+    background: #C3F904;
+}

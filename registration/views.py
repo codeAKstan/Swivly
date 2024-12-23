@@ -11,6 +11,10 @@ def index(request):
     return render(request,
                   'registration/index.html')
 
+def about_us(request):
+    return render(request,
+                  'registration/about.html')
+
 # register view
 def register(request):
     role = request.GET.get('role')
