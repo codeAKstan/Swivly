@@ -6,9 +6,13 @@
         <a href="{% url 'registration:edit' %}" class="edit-btn"><img src="{% static 'img/edit.png' %}"
                 alt="Edit profile"></a>
         <div class="profile-image">
-            <!-- Placeholder for profile image -->
-            <img src="{% static 'img/man.png' %}" alt="Profile Image">
+            {% if user.profile.photo %}
+            <img src="{{ user.profile.photo.url }}" alt="Profile Image">
+            {% else %}
+            <img src="{% static 'img/man.png' %}" alt="Default Profile Image">
+            {% endif %}
         </div>
+
         <div class="profile-details">
             <p><strong>Username:</strong> {{ user.username }}</p>
             <p><strong>Role:</strong> {{ user.profile.role }}</p>
