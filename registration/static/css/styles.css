@@ -1178,6 +1178,8 @@ form select:focus {
 }
 
 
+
+/* Profile Container */
 /* profile */
 .profile-container {
     display: flex;
@@ -1214,6 +1216,11 @@ form select:focus {
     margin: 0.5rem 0;
 }
 
+.profile-actions .btn a {
+    text-decoration: none;
+    color: #000;
+}
+
 .profile-actions .btn {
     display: block;
     margin: 0.5rem auto;
@@ -1222,12 +1229,12 @@ form select:focus {
     color: black;
     text-decoration: none;
     border-radius: 5px;
+    border: none;
 }
 
 .profile-actions form .btn {
     display: block;
-    margin: 0.5rem auto;
-    padding: 0.5rem 1rem;
+
     background: #C3F904;
     color: black;
     text-decoration: none;
@@ -1238,6 +1245,8 @@ form select:focus {
     background: rgb(235, 52, 52);
     color: white;
     border: none;
+    margin: 0.5rem auto;
+    padding: 0.5rem 1rem;
 }
 
 .profile-content {
@@ -1279,4 +1288,142 @@ form select:focus {
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 0.5rem;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .profile-sidebar {
+        background: #6666ff;
+        color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        width: 80%;
+    }
+
+    .profile-content {
+        padding: 1rem;
+        background: #fff;
+        border-radius: 8px;
+        margin-top: 30px;
+        width: 80%;
+    }
+
+    .profile-content h2 {
+        font-size: 18px;
+    }
+
+
+    .listings-summary .btn,
+    .profile-actions .btn {
+        font-size: 14px;
+    }
+}
+
+
+
+/* edit profile */
+.edit-profile-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-header .back-button {
+    font-size: 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+.profile-header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.profile-image-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.edit-profile-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ddd;
+}
+
+.edit-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-profile-image .upload-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.edit-profile-image .upload-icon input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-profile-form input,
+.edit-profile-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.save-changes-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #000;
+    background-color: #C3F904;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-changes-btn:hover {
+    background-color: #bcdf3d;
 }

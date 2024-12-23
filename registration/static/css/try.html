@@ -4,148 +4,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Profile UI</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        /* Signup Container */
-        .signup-container {
+        .profile-container {
+            width: 350px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .profile-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100%;
-            width: 100%;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .signup-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
+        .profile-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ccc;
         }
 
-        .signup-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+        .profile-info {
+            flex-grow: 1;
         }
 
-        .signup-card p {
-            color: #777;
-            margin-bottom: 1.5rem;
+        .profile-name {
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        /* Form Styles */
-        form {
-            text-align: left;
+        .profile-username {
+            font-size: 14px;
+            color: #888;
         }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #3cb371;
-            outline: none;
-            box-shadow: 0 0 4px rgba(60, 179, 113, 0.3);
-        }
-
-        /* Button Styles */
-        .btn-submit {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #3cb371;
-            color: white;
+        .edit-button {
+            background: none;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            font-size: 18px;
+            color: #555;
             cursor: pointer;
         }
 
-        .btn-submit:hover {
-            background-color: #2d914f;
+        .profile-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* Link Styles */
-        .login-link {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #555;
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        .login-link a {
-            color: #3cb371;
-            text-decoration: none;
+        .option-item:hover {
+            background-color: #f0f0f0;
         }
 
-        .login-link a:hover {
-            text-decoration: underline;
+        .option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-icon {
+            font-size: 18px;
+        }
+
+        .option-text {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .option-alert {
+            color: #e63946;
+        }
+
+        .option-arrow {
+            font-size: 16px;
+            color: #888;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #4caf50;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(14px);
         }
     </style>
 </head>
 
 <body>
-    <div class="signup-container">
-        <div class="signup-card">
-            <h2>Sign Up</h2>
-            <p>Create your account to get started</p>
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="profile-image.jpg" alt="Profile Picture" class="profile-image">
+            <div class="profile-info">
+                <h2 class="profile-name">Itunuoluwa Abidoye</h2>
+                <p class="profile-username">@Itunuoluwa</p>
+                <button class="edit-button">✏️</button>
+            </div>
+        </div>
+        <div class="profile-options">
+            <div class="option-item">
+                <div class="option-left">
+                    <span class="option-icon">👤</span>
+                    <p class="option-text">My Account</p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <span class="option-alert">⚠️</span>
+            </div>
+            <div class="option-item">
+                <div class="option-left">
+                    <span class="option-icon">💳</span>
+                    <p class="option-text">Saved Beneficiary</p>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span class="option-arrow">➡️</span>
+            </div>
+            <div class="option-item">
+                <div class="option-left">
+                    <span class="option-icon">🔒</span>
+                    <p class="option-text">Face ID / Touch ID</p>
                 </div>
-                <div class="form-group">
-                    <label for="role">Select Role</label>
-                    <select id="role" name="role" required>
-                        <option value="" disabled selected>Select your role</option>
-                        <option value="agent">Agent</option>
-                        <option value="buyer">Buyer</option>
-                        <option value="seller">Seller</option>
-                    </select>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="option-item">
+                <div class="option-left">
+                    <span class="option-icon">🔑</span>
+                    <p class="option-text">Two-Factor Authentication</p>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn-submit">Sign Up</button>
+                <span class="option-arrow">➡️</span>
+            </div>
+            <div class="option-item">
+                <div class="option-left">
+                    <span class="option-icon">🚪</span>
+                    <p class="option-text">Log out</p>
                 </div>
-            </form>
-            <p class="login-link">Already have an account? <a href="/login">Log in</a></p>
+                <span class="option-arrow">➡️</span>
+            </div>
         </div>
     </div>
 </body>

@@ -40,6 +40,7 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'username', 'email']
+        help_texts = {'username': None}
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:

@@ -19,13 +19,19 @@
             <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
         <div class="profile-actions">
-            <a href="{% url 'registration:password_change' %}" class="btn">Change Password</a>
+            <button class="btn"><a href="{% url 'registration:password_change' %}">Change Password</a></button>
+
             <form action="{% url 'registration:logout' %}" method="post" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="btn logout">Logout</button>
             </form>
         </div>
 
+    </div>
+
+    <div class="profile-content">
+        <h2>Address</h2>
+        <p>{{ user.profile.address }}</p>
     </div>
 
     <div class="profile-content">
