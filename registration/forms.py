@@ -45,4 +45,4 @@ class UserEditForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['role','address', 'tel', 'photo']
+        fields = ['photo','address', 'tel', 'role']

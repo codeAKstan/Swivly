@@ -1379,7 +1379,7 @@ form select:focus {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: #4a90e2;
+    background-color: #C3F904;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -1387,6 +1387,7 @@ form select:focus {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    z-index: 111;
 }
 
 .edit-profile-image .upload-icon input {
