@@ -1,15 +1,15 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
-from .models import Listing, Transaction, Profile
+from .models import Listing, Transaction, Profile, Category, Product
 from django.contrib import messages
 
 # Create your views here.
 
-def index(request):
-    return render(request,
-                  'registration/index.html')
+# def index(request):
+#     return render(request,
+#                   'registration/index.html')
 
 def about_us(request):
     return render(request,
@@ -82,3 +82,17 @@ def edit(request):
                   'registration/edit.html',
                 {'user_form': user_form,
                 'profile_form': profile_form})
+
+
+def product_list_or_index(request,category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category,
+                                     slug=category_slug)
+        products = products.filter(category=category)
+    return render(request, 'registration/index.html',
+                  {'category': category,
+                  'categories': categories,
+                  'products':products})

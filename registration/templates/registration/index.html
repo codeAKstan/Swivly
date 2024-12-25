@@ -21,10 +21,20 @@
             <h3>SHOP BY</h3>
             <div class="filter-group">
                 <h4>Categories</h4>
-                <label><input type="radio" name="category" value="all" checked> All</label>
-                <label><input type="radio" name="category" value="marketplace"> Marketplace</label>
-                <label><input type="radio" name="category" value="accommodation"> Accommodation</label>
+                <ul>
+                    <li {% if not category %}class="selected" {% endif %}>
+                        <a href="{% url 'registration:product_list' %}">All</a>
+                    </li>
+                    {% for c in categories %}
+                    <li {% if c.is_selected %}class="selected" {% endif %}>
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+
+
+                    {% endfor %}
+                </ul>
             </div>
+
             <div class="filter-group">
                 <h4>By Location</h4>
                 <select>
