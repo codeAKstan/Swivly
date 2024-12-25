@@ -361,6 +361,8 @@ body {
     z-index: 111;
 }
 
+
+
 .product-card .img-container img {
     /* max-width: 100%; */
     position: relative;
@@ -376,6 +378,12 @@ body {
 .product-card .content .price {
     color: #000;
 }
+
+.product-card .content .badge2 {
+    color: #000;
+    visibility: hidden;
+}
+
 
 .product-card h5 {
     font-size: 1.2rem;
@@ -465,6 +473,10 @@ body {
     outline: none;
 }
 
+.filter-mob {
+    display: none;
+}
+
 /* Mobile Responsive Layout */
 @media (max-width: 768px) {
     .shop-section {
@@ -487,6 +499,7 @@ body {
         font-size: 1rem;
         border: 2px solid #ccc;
         border-radius: 5px;
+        display: none;
     }
 
     .search-bar button {
@@ -497,6 +510,7 @@ body {
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        display: none;
     }
 
     .products-section {
@@ -531,9 +545,77 @@ body {
         background-color: white;
     }
 
+
+
+    .product-card .badge {
+        visibility: hidden;
+    }
+
     .product-card .content {
         color: #625aff;
+
     }
+
+    .product-card .content .badge2 {
+        position: relative;
+        visibility: visible;
+        width: 70px;
+        background-color: #C3F904;
+        color: #000;
+        padding: 9px 18px;
+        padding-left: 10px;
+        font-size: 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 111;
+        float: right;
+    }
+
+    .filter-mob {
+        display: block;
+    }
+
+    .filter-mob ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        list-style-type: none;
+        padding: 10px;
+    }
+
+    .filter-mob li {
+        text-align: center;
+        background: #6666ff;
+        color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .filter-mob li a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .filter-mob li.selected {
+        background: #f0f0f0;
+        border-color: #bbb;
+    }
+
+    .filter-mob li:hover {
+        background: #eaeaea;
+        border-color: #aaa;
+    }
+
+
 
 
 }
