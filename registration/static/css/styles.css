@@ -285,6 +285,26 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.filter-group ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.filter-group ul::marker {
+    font-size: 50px;
+    color: #C3F904;
+}
+
+.filter-group ul li {
+    margin-bottom: 10px;
+}
+
+.filter-group ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
 .filter-group label {
     display: block;
     margin-bottom: 0.5rem;
