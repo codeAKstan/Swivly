@@ -92,10 +92,13 @@ def product_list_or_index(request,category_slug=None):
         category = get_object_or_404(Category,
                                      slug=category_slug)
         products = products.filter(category=category)
-    return render(request, 'registration/index.html',
-                  {'category': category,
-                  'categories': categories,
-                  'products':products})
+    template = 'registration/shop.html' if 'shop' in request.path else 'registration/index.html'
+
+    return render(request, template, {
+        'category': category,
+        'categories': categories,
+        'products': products,
+    })
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product,
@@ -107,4 +110,9 @@ def product_detail(request, id, slug):
                   {'product': product})
 
 def market_place(request):
-    return render(request,'registration/shop.html')
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
+    return render(request, 'registration/shop.html', {
+        'categories': categories,
+        'products': products
+    })
