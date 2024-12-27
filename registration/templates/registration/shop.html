@@ -1,0 +1,38 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="sidebar">
+    <h3>Categories</h3>
+    <ul>
+        <li {% if not category %}class="selected" {% endif %}>
+            <a href="{% url 'registration:product_list' %}">All</a>
+        </li>
+        {% for c in categories %}
+        <li {% if c.is_selected %}class="selected" {% endif %}>
+            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+
+
+        {% endfor %}
+    </ul>
+</div>
+<div id="main" class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+    {% if products %}
+    {% for product in products %}
+    <div class="item">
+        <a href="{{ product.get_absolute_url }}">
+            <img
+                src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}">
+        </a>
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+        <br>
+        ${{ product.price }}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No products available in this category.</p>
+    {% endif %}
+</div>
+{% endblock %}

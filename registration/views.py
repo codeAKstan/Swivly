@@ -96,3 +96,15 @@ def product_list_or_index(request,category_slug=None):
                   {'category': category,
                   'categories': categories,
                   'products':products})
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product,
+                                id=id,
+                                slug=slug,
+                                available=True)
+    return render(request,
+                  'registration/detail.html',
+                  {'product': product})
+
+def market_place(request):
+    return render(request,'registration/shop.html')

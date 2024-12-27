@@ -159,7 +159,7 @@
             </div>
             <div class="products-section">
                 <div>
-                    <button class="see-more-button">See more ➤</button>
+                    <button class="see-more-button"><a href=" {% url 'registration:shop' %}">See more ➤</a></button>
                 </div>
             </div>
 </section>
@@ -315,7 +315,7 @@
 
         <ul>
             <li><a href="/marketplace">Contact Us</a></li>
-            <li><a href="/marketplace">MarketPlace</a></li>
+            <li><a href="{% url 'registration:shop' %}">MarketPlace</a></li>
             <li><a href="/accommodation">Accommodation</a></li>
         </ul>
         <ul>

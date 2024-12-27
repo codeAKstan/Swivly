@@ -1611,3 +1611,50 @@ form select:focus {
 .cta .btn:hover {
     background: #C3F904;
 }
+
+
+/* market place */
+.search-bar {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.shop-hero {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+}
+
+.shop-container {
+    display: flex;
+    margin: 20px;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.products {
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.shop-product-card {
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shop-product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
