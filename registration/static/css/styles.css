@@ -335,12 +335,13 @@ body {
 }
 
 .product-card {
-    background-color: #625aff;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(97, 117, 202, 0.1);
     text-align: center;
     padding: 1rem;
     position: relative;
+    color: #625aff;
 }
 
 .product-card .img-container {
@@ -392,7 +393,7 @@ body {
 }
 
 .product-card .content {
-    color: white;
+    color: #625aff;
 }
 
 .product-card .content .price {
@@ -452,7 +453,7 @@ body {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 1px;
 }
 
 .search-bar button:hover {
@@ -1619,6 +1620,7 @@ form select:focus {
     border-radius: 5px;
 }
 
+/* Hero Section */
 .shop-hero {
     text-align: center;
     padding: 50px;
@@ -1626,35 +1628,182 @@ form select:focus {
     color: white;
 }
 
-.shop-container {
+/* Main Container */
+.main-container {
     display: flex;
-    margin: 20px;
+    height: 100vh;
 }
 
+/* Sidebar */
 .sidebar {
-    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    width: 25%;
+    color: black;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+    display: block;
     padding: 10px;
-    background: #fff;
     border-radius: 5px;
 }
 
+.sidebar a:hover,
+.sidebar .selected a {
+    background-color: #625aff;
+    color: white;
+}
+
 .products {
-    width: 75%;
+    color: black;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.products h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: black;
+}
+
+.product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
 }
 
 .shop-product-card {
-    background: white;
+    background-color: white;
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
 }
 
 .shop-product-card img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.shop-product-card .product-name {
+    font-weight: bold;
+    margin: 10px 0;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+
+.shop-product-card .product-price {
+    color: #555;
+    font-size: 1rem;
+}
+
+.shop-btn {
+    background-color: transparent;
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    float: right;
+}
+
+.shop-btn img {
+    width: 20px;
+    height: auto;
+}
+
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 90%;
+    }
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sidebar li {
+        margin: 5px 0;
+        flex: 1 1 calc(50% - 10px);
+        background-color: #625aff;
+
+    }
+
+    .sidebar a {
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 8px;
+        color: white;
+    }
+
+    .products {
+        padding: 10px;
+    }
+
+    .products h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .shop-product-card {
+        padding: 10px;
+    }
+
+    .shop-product-card img {
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .shop-product-card .product-name {
+        font-size: 0.9rem;
+    }
+
+    .shop-product-card .product-price {
+        font-size: 0.8rem;
+    }
+
+    .shop-btn img {
+        width: 20px;
+        height: 20px;
+    }
 }

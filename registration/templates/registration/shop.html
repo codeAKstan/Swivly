@@ -1,17 +1,15 @@
 {% extends 'registration/base.html' %}
 {% load static %}
 
-
 {% block content %}
-<!-- Hero Section -->
 <section class="shop-hero">
     <h1>Welcome to Swivly Marketplace</h1>
     <p>Discover the best deals for students!</p>
     <input type="text" placeholder="Search products..." class="search-bar">
 </section>
 
-<!-- Main Content -->
-<main class="shop-container">
+<!-- Main Container -->
+<div class="main-container">
     <!-- Sidebar -->
     <aside class="sidebar">
         <h2>Categories</h2>
@@ -23,26 +21,24 @@
             <li {% if c.is_selected %}class="selected" {% endif %}>
                 <a href="{% url 'swivly:shop_product_list_by_category' c.slug %}">{{ c.name }}</a>
             </li>
-
-
             {% endfor %}
         </ul>
     </aside>
 
     <!-- Product Grid -->
     <section class="products">
-        <div id="main" class="product-list">
-            <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+        <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+        <div class="product-grid">
             {% if products %}
             {% for product in products %}
-            <div class="item">
+            <div class="shop-product-card">
                 <a href="{{ product.get_absolute_url }}">
-                    <img
-                        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}"
+                        alt="{{ product.name }}" class="product-image">
                 </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                <br>
-                ${{ product.price }}
+                <a href="{{ product.get_absolute_url }}" class="product-name">{{ product.name }}</a>
+                <p class="product-price">${{ product.price }}</p>
+                <button class="shop-btn"><img src="{% static 'img/addtocart.png' %}" alt="add to cart"></button>
             </div>
             {% endfor %}
             {% else %}
@@ -50,5 +46,5 @@
             {% endif %}
         </div>
     </section>
-</main>
+</div>
 {% endblock %}
