@@ -5,10 +5,10 @@
 <section class="shop-hero">
     <h1>Welcome to Swivly Marketplace</h1>
     <p>Discover the best deals for students!</p>
-    <div class="search-bar">
-        <form method="get" action="{% url 'swivly:shop' %}">
+    <div class="shop-search-bar">
+        <form class="shop-search-btn" method="get" action="{% url 'swivly:shop' %}">
             <input type="text" name="search" placeholder="Search for products..." value="{{ query|default:'' }}" />
-            <button type="submit">Search</button>
+            <button type="submit" class="shop-search-btn">➤</button>
         </form>
     </div>
 

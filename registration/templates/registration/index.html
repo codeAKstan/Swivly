@@ -47,8 +47,10 @@
         </aside>
         <div class="products-section">
             <div class="search-bar">
-                <input type="text" name="search" placeholder="Search for products...">
-                <button>➤</button>
+                <form action="" method="get" class="shop-search-btn">
+                    <input type="text" name="search" placeholder="Search for products...">
+                    <button>➤</button>
+                </form>
             </div>
             <div class="filter-mob">
                 <ul>
@@ -65,98 +67,36 @@
                 </ul>
             </div>
             <div class="products-grid">
+                {% if products %}
+                {% for product in products %}
                 <div class="product-card">
                     <div class="curve">
-                        <div class="badge">SHOP NOW</div>
+                        <div class="badge"><a href="{{ product.get_absolute_url }}">SHOP NOW</a></div>
                     </div>
                     <div class="img-container">
-                        <img src="{% static 'img/mattress.png' %}" alt="Spring Mattress">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}"
+                                alt="{{ product.name }}">
+                        </a>
                     </div>
                     <div class="content">
-                        <h3>Spring Mattress</h3>
-                        <p>Barely used 180 × 200cm</p>
-                        <div class="price">
-                            <span>₦75,000.00</span>
+                        <h5>{{ product.name }}</h5>
+                        <p>{{ product.description|truncatewords:10 }}</p>
+                        <p class="price">₦{{ product.price|floatformat:0 }}</p>
+                        <div class="badge2">
+                            <a href="{{ product.get_absolute_url }}">SHOP NOW</a>
                         </div>
-                        <div class="badge2">SHOP NOW</div>
-
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="curve">
-                        <div class="badge">SHOP NOW</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="{% static 'img/chair.png' %}" alt="chair">
-                    </div>
-                    <div class="content">
-                        <h5>Work Chair Staff</h5>
-                        <p>Ecos SKM 3903 Office Chair</p>
-                        <p class="price">₦45,700.00</p>
-                        <div class="badge2">SHOP NOW</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="curve">
-                        <div class="badge">SHOP NOW</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="{% static 'img/laptop.png' %}" alt="Lenovo IdeaPad">
-                    </div>
-                    <div class="content">
-                        <h5>Lenovo IdeaPad</h5>
-                        <p>Core i3, 4GB, 256GB SSD</p>
-                        <p class="price">₦110,000.00</p>
-                        <div class="badge2">SHOP NOW</div>
-                    </div>
-
-                </div>
-                <div class="product-card">
-                    <div class="curve">
-                        <div class="badge">SHOP NOW</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="{% static 'img/harddisk.png' %}" alt="ssd harddisk">
-                    </div>
-                    <div class="content">
-                        <h5>Laptop Internal SSD</h5>
-                        <p>Barely used 500gb 2TB SSD</p>
-                        <p class="price">₦110,000.00</p>
-                        <div class="badge2">SHOP NOW</div>
-                    </div>
-
-                </div>
-                <div class="product-card">
-                    <div class="curve">
-                        <div class="badge">SHOP NOW</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="{% static 'img/fan.png' %}" alt="Electric fan">
-                    </div>
-                    <div class="content">
-                        <h5>Portable Desktop Fan</h5>
-                        <p>Barely used USB small fan</p>
-                        <p class="price">₦110,000.00</p>
-                        <div class="badge2">SHOP NOW</div>
-                    </div>
-
-                </div>
-                <div class="product-card">
-                    <div class="curve">
-                        <div class="badge">SHOP NOW</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="{% static 'img/gas.png' %}" alt="Electric cooker">
-                    </div>
-                    <div class="content">
-                        <h5>Electric Cooker</h5>
-                        <p>Fast electric cooker</p>
-                        <p class="price">₦56,000.00</p>
-                        <div class="badge2">SHOP NOW</div>
-                    </div>
-
-                </div>
+                {% endfor %}
+                {% else %}
+                <p>No products available at the moment.</p>
+                {% endif %}
             </div>
+
+
+
+
             <div class="products-section">
                 <div>
                     <button class="see-more-button"><a href=" {% url 'registration:shop' %}">See more ➤</a></button>

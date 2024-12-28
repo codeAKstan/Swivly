@@ -382,6 +382,15 @@ body {
     z-index: 111;
 }
 
+.product-card .badge a {
+    text-decoration: none;
+    color: black;
+}
+
+.product-card .badge2 a {
+    text-decoration: none;
+    color: black;
+}
 
 
 .product-card .img-container img {
@@ -1615,9 +1624,16 @@ form select:focus {
 
 
 /* market place */
-.search-bar {
+.shop-search-bar {
     padding: 5px;
     border-radius: 5px;
+}
+
+.shop-search-btn {
+    background-color: #C3F904;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Hero Section */
