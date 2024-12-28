@@ -30,7 +30,8 @@
                     {% if user.is_authenticated %}
                     <button class="btn login"
                         onclick="window.location.href='{% url 'registration:profile' %}'">Profile</button>
-                    <button class="btn cart">Cart</button>
+                    <button class="btn cart" onclick="window.location.href='{% url 'cart:cart_detail' %}'">Cart</button>
+
                     {% else %}
                     <div class="signup-dropdown">
                         <button class="btn cart" id="signup-btn">Sign Up <span class="arrow">▼</span></button>

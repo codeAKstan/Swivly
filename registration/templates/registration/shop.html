@@ -40,14 +40,23 @@
             {% if products %}
             {% for product in products %}
             <div class="shop-product-card">
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="shop-btn">
+                        <img src="{% static 'img/addtocart.png' %}" alt="Add to Cart">
+                    </button>
+                </form>
                 <a href="{{ product.get_absolute_url }}">
-                    <button class="shop-btn"><img src="{% static 'img/addtocart.png' %}" alt="add to cart"></button>
                     <img src="{% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}"
                         alt="{{ product.name }}" class="product-image">
                 </a>
                 <a href="{{ product.get_absolute_url }}" class="product-name">{{ product.name }}</a>
                 <p class="product-price">${{ product.price }}</p>
+
+                <!-- Add to Cart Form -->
+
             </div>
+
             {% endfor %}
             {% else %}
             <p>No products match your search.</p>

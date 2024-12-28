@@ -69,6 +69,12 @@ body {
     border-radius: 30px;
 }
 
+.products-section .btn .cart {
+    background-color: #C3F904;
+    color: #000;
+    border-radius: 30px;
+}
+
 .signup-dropdown {
     position: relative;
     display: inline-block;
