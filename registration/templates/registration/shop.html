@@ -5,7 +5,9 @@
 <section class="shop-hero">
     <h1>Welcome to Swivly Marketplace</h1>
     <p>Discover the best deals for students!</p>
-    <input type="text" placeholder="Search products..." class="search-bar">
+    <div class="search-bar">
+        <input type="text" name="search" placeholder="Search for products...">
+    </div>
 </section>
 
 <!-- Main Container -->
@@ -33,12 +35,12 @@
             {% for product in products %}
             <div class="shop-product-card">
                 <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}"
+                    <button class="shop-btn"><img src="{% static 'img/addtocart.png' %}" alt="add to cart"></button>
+                    <img src="{% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static 'img/no-pictures.png' %}{% endif %}"
                         alt="{{ product.name }}" class="product-image">
                 </a>
                 <a href="{{ product.get_absolute_url }}" class="product-name">{{ product.name }}</a>
                 <p class="product-price">${{ product.price }}</p>
-                <button class="shop-btn"><img src="{% static 'img/addtocart.png' %}" alt="add to cart"></button>
             </div>
             {% endfor %}
             {% else %}

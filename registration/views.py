@@ -105,9 +105,11 @@ def product_detail(request, id, slug):
                                 id=id,
                                 slug=slug,
                                 available=True)
+    images = product.images.all()
     return render(request,
                   'registration/detail.html',
-                  {'product': product})
+                  {'product': product,
+                   'images':images})
 
 def market_place(request):
     categories = Category.objects.all()

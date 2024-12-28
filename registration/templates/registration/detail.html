@@ -1,0 +1,65 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="product-detail">
+    <!-- Product Images -->
+    <div class="product-images">
+        {% if images %}
+        <div class="image-gallery">
+            {% for image in images %}
+            <img src="{{ image.image.url }}" alt="{{ product.name }}" style="max-width: 200px; margin: 10px;">
+            {% endfor %}
+        </div>
+        {% else %}
+        <img src="{% static 'img/no_pictures.png' %}" alt="No Image Available">
+        {% endif %}
+    </div>
+
+    <!-- Product Details -->
+    <h1>{{ product.name }}</h1>
+    <h2>
+        <a href="{{ product.category.get_absolute_url }}">
+            {{ product.category }}
+        </a>
+    </h2>
+    <p class="price">Price: ${{ product.price }}</p>
+    <div class="description">
+        {{ product.description|linebreaks }}
+    </div>
+
+    <!-- Add to Cart Form -->
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+    </form>
+</div>
+
+<!-- Additional Styling (Optional) -->
+<style>
+    .product-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .product-images img {
+        max-width: 150px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail h1,
+    .product-detail h2 {
+        margin: 10px 0;
+    }
+
+    .product-detail .price {
+        font-size: 1.5em;
+        color: #007b5e;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}

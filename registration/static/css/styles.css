@@ -1720,11 +1720,12 @@ form select:focus {
 }
 
 .shop-btn {
-    background-color: transparent;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.09);
     color: black;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 15px;
+    border-radius: 50%;
     cursor: pointer;
     float: right;
 }
