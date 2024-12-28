@@ -1,0 +1,103 @@
+{% extends 'registration/base.html' %}
+{% block title %}Checkout{% endblock %}
+{% load cart_extras %}
+{% load static %}
+
+{% block content %}
+<div class="checkout-container">
+    <h1>Checkout</h1>
+
+    <!-- Order Summary -->
+    <h2>Order Summary</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.product.price|multiply:item.quantity }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Subtotal</td>
+                <td>${{ subtotal }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Delivery Fee</td>
+                <td>${{ delivery_fee }}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>${{ total }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'cart:cart_detail' %}" class="btn btn-primary">Edit Cart</a>
+
+    <!-- Address Form -->
+    <h2>Delivery Address</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ address_form.as_p }}
+        <button type="submit" class="btn btn-success">Save Address</button>
+    </form>
+</div>
+<style>
+    .checkout-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2 {
+        color: #625aff;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background: #625aff;
+        color: white;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        background: #625aff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .btn:hover {
+        background: #6a11cb;
+    }
+</style>
+{% endblock %}
