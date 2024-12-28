@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
 from .models import Listing, Transaction, Profile, Category, Product
 from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
 
@@ -84,21 +85,30 @@ def edit(request):
                 'profile_form': profile_form})
 
 
-def product_list_or_index(request,category_slug=None):
+def product_list_or_index(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
+
     if category_slug:
-        category = get_object_or_404(Category,
-                                     slug=category_slug)
+        category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
+
+    query = request.GET.get('search', '').strip()
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+
     template = 'registration/shop.html' if 'shop' in request.path else 'registration/index.html'
 
     return render(request, template, {
         'category': category,
         'categories': categories,
         'products': products,
+        'query': query,
     })
+
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product,
@@ -114,7 +124,16 @@ def product_detail(request, id, slug):
 def market_place(request):
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
+
+    query = request.GET.get('search', '').strip()
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+        
+
     return render(request, 'registration/shop.html', {
         'categories': categories,
-        'products': products
+        'products': products,
+        'query': query, 
     })

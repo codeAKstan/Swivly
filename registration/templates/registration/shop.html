@@ -6,8 +6,13 @@
     <h1>Welcome to Swivly Marketplace</h1>
     <p>Discover the best deals for students!</p>
     <div class="search-bar">
-        <input type="text" name="search" placeholder="Search for products...">
+        <form method="get" action="{% url 'swivly:shop' %}">
+            <input type="text" name="search" placeholder="Search for products..." value="{{ query|default:'' }}" />
+            <button type="submit">Search</button>
+        </form>
     </div>
+
+
 </section>
 
 <!-- Main Container -->
@@ -30,6 +35,7 @@
     <!-- Product Grid -->
     <section class="products">
         <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+        <p>{% if query %}Results for "{{ query }}"{% endif %}</p>
         <div class="product-grid">
             {% if products %}
             {% for product in products %}
@@ -44,7 +50,7 @@
             </div>
             {% endfor %}
             {% else %}
-            <p>No products available in this category.</p>
+            <p>No products match your search.</p>
             {% endif %}
         </div>
     </section>
