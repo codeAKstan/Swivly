@@ -5,7 +5,7 @@ from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
 from .models import Listing, Transaction, Profile, Category, Product
 from django.contrib import messages
 from django.db.models import Q
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 # def index(request):
@@ -99,6 +99,11 @@ def product_list_or_index(request, category_slug=None):
         products = products.filter(
             Q(name__icontains=query) | Q(description__icontains=query)
         )
+    
+    paginator = Paginator(products, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+        
 
     template = 'registration/shop.html' if 'shop' in request.path else 'registration/index.html'
 
@@ -106,6 +111,7 @@ def product_list_or_index(request, category_slug=None):
         'category': category,
         'categories': categories,
         'products': products,
+        'page_obj': page_obj,
         'query': query,
     })
 
@@ -130,10 +136,15 @@ def market_place(request):
         products = products.filter(
             Q(name__icontains=query) | Q(description__icontains=query)
         )
+    
+    paginator = Paginator(products, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
         
 
     return render(request, 'registration/shop.html', {
         'categories': categories,
         'products': products,
+        'page_obj': page_obj,
         'query': query, 
     })

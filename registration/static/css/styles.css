@@ -1830,3 +1830,31 @@ form select:focus {
         height: 20px;
     }
 }
+
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .step-links a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.09);
+    color: #625aff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.pagination .step-links a:hover {
+    background-color: #C3F904;
+}
+
+.pagination .current {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #ddd;
+    border-radius: 3px;
+}
