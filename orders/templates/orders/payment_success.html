@@ -2,9 +2,21 @@
 {% load static %}
 {% block title %}Payment Successful{% endblock %}
 {% block content %}
-<div class="container">
+<div class="success-container">
     <h1>Payment Successful</h1>
     <p>Your payment was successful! Order ID: {{ order.id }}</p>
-    <a href="{% url 'registration:shop' %}" class="btn btn-primary">Continue Shopping</a>
+    <a href="{% url 'registration:shop' %}" class="btn btn-primary"
+        style="padding: 10px 20px; background-color: white; color: #08aa1e; border-radius: 5px; text-decoration: none; font-weight: bold;">Continue
+        Shopping</a>
 </div>
+<style>
+    .success-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>
 {% endblock %}

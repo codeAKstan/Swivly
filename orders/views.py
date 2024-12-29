@@ -6,6 +6,7 @@ from cart.cart import Cart
 from paystackapi.paystack import Paystack
 from paystackapi.transaction import Transaction
 from decimal import Decimal
+from orders.tasks import send_order_confirmation_email, send_payment_confirmation_email
 
 paystack = Paystack(secret_key=settings.PAYSTACK_SECRET_KEY)
 
@@ -30,6 +31,8 @@ def place_order(request):
     
     # Clear the cart
     cart.clear()
+
+    send_order_confirmation_email.delay(request.user.email, order.id)
 
     # Initialize Paystack Payment
     # Convert to kobo (Paystack expects amounts in kobo)
@@ -62,6 +65,8 @@ def verify_payment(request):
         order = get_object_or_404(Order, id=order_id, user=request.user)
         order.paid = True
         order.save()
+
+        send_payment_confirmation_email.delay(request.user.email, order.id)
         
         for item in order.items.all():
             item.product.available = False

@@ -5,3 +5,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Swivly.settings')
 app = Celery('Swivly')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
+
