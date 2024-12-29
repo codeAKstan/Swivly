@@ -1,9 +1,22 @@
 {% extends 'registration/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-    <h1>Product Unavailable</h1>
-    <p>Sorry, the product "{{ product.name }}" is no longer available.</p>
-    <a href="{% url 'registration:shop' %}" class="btn btn-primary">Continue Shopping</a>
+<div class="unavailable-container"
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #4765f5; color: white; text-align: center;padding: 50px;">
+    <h1 style="margin-bottom: 20px;">Product Unavailable</h1>
+    <p style="margin-bottom: 20px;">Sorry, the product "{{ product.name }}" is no longer available.</p>
+    <a href="{% url 'registration:shop' %}" class="btn"
+        style="padding: 10px 20px; background-color: white; color: #4765f5; border-radius: 5px; text-decoration: none; font-weight: bold;">Continue
+        Shopping</a>
 </div>
+<style>
+    .unavailable-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>
 {% endblock %}

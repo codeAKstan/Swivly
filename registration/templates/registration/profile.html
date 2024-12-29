@@ -1,7 +1,7 @@
 {% extends "registration/base.html" %}
 {% load static %}
 {% block content %}
-<div class="profile-container">
+<div class="sidecard">
     <div class="profile-sidebar">
         <a href="{% url 'registration:edit' %}" class="edit-btn"><img src="{% static 'img/edit.png' %}"
                 alt="Edit profile"></a>
@@ -16,7 +16,6 @@
         <div class="profile-details">
             <p><strong>Username:</strong> {{ user.username }}</p>
             <p><strong>Role:</strong> {{ user.profile.role }}</p>
-            <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
         <div class="profile-actions">
             <button class="btn"><a href="{% url 'registration:password_change' %}">Change Password</a></button>
@@ -28,6 +27,8 @@
         </div>
 
     </div>
+</div>
+<div class="profile-container">
 
     <div class="profile-content">
         <h2>Address Book</h2>
@@ -87,6 +88,15 @@
     </div>
 </div>
 <style>
+    .sidecard {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     .purchase-history {
         max-width: 800px;
         margin: 20px auto;

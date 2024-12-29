@@ -1307,12 +1307,11 @@ form select:focus {
 }
 
 .profile-sidebar {
-    width: 25%;
+    width: 90%;
     background: #6666ff;
     color: white;
     text-align: center;
-    padding: 2rem;
-    border-radius: 8px;
+    padding: 2.5rem;
 }
 
 .profile-sidebar .edit-btn img {
@@ -1420,6 +1419,7 @@ form select:focus {
         color: #fff;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         width: 80%;
+        padding: 2rem;
     }
 
     .profile-content {
