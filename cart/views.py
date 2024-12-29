@@ -31,6 +31,11 @@ def cart_detail(request):
 def checkout(request):
     cart = Cart(request)
 
+    for item in cart:
+        if not item['product'].available:
+            cart.remove(item['product'])
+            return render(request, 'cart/unavailable.html', {'product': item['product']})
+
     configuration = Configuration.objects.first()
     delivery_fee = configuration.delivery_fee if configuration else Decimal('5.00')
 

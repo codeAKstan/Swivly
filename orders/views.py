@@ -62,6 +62,10 @@ def verify_payment(request):
         order = get_object_or_404(Order, id=order_id, user=request.user)
         order.paid = True
         order.save()
+        
+        for item in order.items.all():
+            item.product.available = False
+            item.product.save()
 
         return render(request, 'orders/payment_success.html', {'order': order})
     else:

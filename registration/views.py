@@ -6,6 +6,7 @@ from .models import Listing, Transaction, Profile, Category, Product
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
+from orders.models import Order, OrderItem
 # Create your views here.
 
 # def index(request):
@@ -52,7 +53,7 @@ def profile(request):
 
     # Data for buyers
     if role == "buyer":
-        transactions = Transaction.objects.filter(user=request.user).order_by('-date')
+        transactions = Order.objects.filter(user=request.user).order_by('-created')
     else:
         transactions = []
 

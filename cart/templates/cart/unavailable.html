@@ -1,0 +1,9 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Product Unavailable</h1>
+    <p>Sorry, the product "{{ product.name }}" is no longer available.</p>
+    <a href="{% url 'registration:shop' %}" class="btn btn-primary">Continue Shopping</a>
+</div>
+{% endblock %}

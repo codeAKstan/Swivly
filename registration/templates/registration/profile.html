@@ -54,18 +54,98 @@
         <section class="purchase-history">
             <h2>Purchase and Rent History</h2>
             <ul>
-                {% for transaction in transactions %}
-                <li>
-                    <p><strong>Item:</strong> {{ transaction.item_name }}</p>
-                    <p><strong>Date:</strong> {{ transaction.date }}</p>
-                    <p><strong>Status:</strong> {{ transaction.status }}</p>
+                {% for order in transactions %}
+                <li class="transaction-card">
+                    <p><strong>Order ID:</strong> {{ order.id }}</p>
+                    <p><strong>Date:</strong> {{ order.created|date:"F j, Y, g:i a" }}</p>
+                    <p><strong>Total Paid:</strong> ₦{{ order.total_price }}</p>
+                    <p>
+                        <strong>Status:</strong>
+                        {% if order.paid %}
+                        <span class="status-badge paid">Paid</span>
+                        {% else %}
+                        <span class="status-badge unpaid">Unpaid</span>
+                        {% endif %}
+                    </p>
+                    <h4>Items in Order:</h4>
+                    <ul class="product-list">
+                        {% for item in order.items.all %}
+                        <li>
+                            <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+                            (₦{{ item.price }} x {{ item.quantity }})
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </li>
                 {% empty %}
                 <p>No recent transactions available.</p>
                 {% endfor %}
             </ul>
         </section>
+
         {% endif %}
     </div>
 </div>
+<style>
+    .purchase-history {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .purchase-history h2 {
+        color: #625aff;
+        margin-bottom: 20px;
+    }
+
+    .transaction-card {
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+    }
+
+    .transaction-card h4 {
+        margin-top: 10px;
+        color: #333;
+    }
+
+    .product-list {
+        list-style: none;
+        padding-left: 20px;
+    }
+
+    .product-list li {
+        margin-bottom: 5px;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        color: white;
+    }
+
+    .status-badge.paid {
+        background: #28a745;
+    }
+
+    .status-badge.unpaid {
+        background: #dc3545;
+    }
+
+    a {
+        color: #625aff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
 {% endblock %}
