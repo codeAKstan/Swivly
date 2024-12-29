@@ -5,7 +5,11 @@
 
 {% block content %}
 <div class="checkout-container">
-    <a href="" class="btn btn-secondary">Confirm Order</a>
+    <form action="{% url 'orders:place_order' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Place Order</button>
+    </form>
+
     <h1>Checkout</h1>
 
     <!-- Order Summary -->

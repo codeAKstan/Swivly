@@ -1,0 +1,10 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block title %}Payment Successful{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Payment Successful</h1>
+    <p>Your payment was successful! Order ID: {{ order.id }}</p>
+    <a href="{% url 'registration:shop' %}" class="btn btn-primary">Continue Shopping</a>
+</div>
+{% endblock %}

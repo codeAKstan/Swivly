@@ -1,0 +1,10 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block title %}Payment Failed{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Payment Failed</h1>
+    <p>There was an error with your payment: {{ error }}</p>
+    <a href="{% url 'orders:place_order' %}" class="btn btn-primary">Try Again</a>
+</div>
+{% endblock %}
