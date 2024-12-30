@@ -43,12 +43,12 @@
         {% if user.profile.role == "agent" or user.profile.role == "seller" %}
         <section class="listings-summary">
             <h2>Listings Summary</h2>
-            <p>Active Listings: {{ active_listings_count }}</p>
-            <p>Pending Listings: {{ pending_listings_count }}</p>
-            <a href="" class="btn">Manage Listings</a>
-            <a href="" class="btn primary">Add New Listing</a>
+            <a href="{% url 'registration:listing_summary' %}" class="btn primary">View listings</a>
+
+            <a href="{% url 'registration:add_product' %}" class="btn primary">Add New Listing</a>
         </section>
         {% endif %}
+
 
         <!-- Purchase and Rent History (for Buyers) -->
         {% if user.profile.role == "buyer" %}

@@ -1,12 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
-from .models import Listing, Transaction, Profile, Category, Product
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm
+from .models import Listing, Transaction, Profile, Category, Product, ProductImage
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 from orders.models import Order, OrderItem
+from django.forms import modelformset_factory
 # Create your views here.
 
 # def index(request):
@@ -38,30 +39,18 @@ def register(request):
                       {'form':form})
     
 
-
 @login_required
 def profile(request):
     role = request.user.profile.role
 
-    # Data for sellers/agents
-    if role in ["agent", "seller"]:
-        active_listings_count = Listing.objects.filter(user=request.user, status="active").count()
-        pending_listings_count = Listing.objects.filter(user=request.user, status="pending").count()
-        expired_listings_count = Listing.objects.filter(user=request.user, status="expired").count()
-    else:
-        active_listings_count = pending_listings_count = expired_listings_count = 0
 
-    # Data for buyers
     if role == "buyer":
         transactions = Order.objects.filter(user=request.user).order_by('-created')
     else:
         transactions = []
 
     return render(request, 'registration/profile.html', {
-        'active_listings_count': active_listings_count,
-        'pending_listings_count': pending_listings_count,
-        'expired_listings_count': expired_listings_count,
-        'transactions': transactions
+        'transactions': transactions,
     })
 
 
@@ -149,3 +138,62 @@ def market_place(request):
         'page_obj': page_obj,
         'query': query, 
     })
+
+
+
+@login_required
+def add_product(request):
+    if not request.user.profile.role in ['seller', 'agent']:
+        return redirect('registration:login')
+
+    ProductImageFormSet = modelformset_factory(ProductImage, fields=('image',), extra=5)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        formset = ProductImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+
+        if form.is_valid() and formset.is_valid():
+            product = form.save(commit=False)
+            product.user = request.user
+            product.save()
+
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    ProductImage.objects.create(product=product, image=image)
+
+            messages.success(request, "Product added successfully!")
+            return redirect('registration:listing_summary')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ProductForm()
+        formset = ProductImageFormSet(queryset=ProductImage.objects.none())
+
+    return render(request, 'registration/product_upload.html', {
+        'form': form,
+        'formset': formset,
+    })
+
+
+
+def listing_summary(request):
+    if not request.user.is_authenticated:
+        return redirect('registration:login')
+
+    # Ensure the user is a seller or agent
+    if request.user.profile.role not in ['seller', 'agent']:
+        return redirect('registration:dashboard')
+
+    products = Product.objects.filter(user=request.user)
+    active_count = products.filter(available=True).count()
+    pending_count = products.filter(status='pending').count()
+    rejected_count = products.filter(status='rejected').count()
+
+    context = {
+        'active_count': active_count,
+        'pending_count': pending_count,
+        'rejected_count': rejected_count,
+        'products': products,
+    }
+    return render(request, 'registration/listing_summary.html', context)

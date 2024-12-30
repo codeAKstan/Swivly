@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, ProductImage, Product
 
 class UserRegisterForm(forms.ModelForm):
     ROLE_CHOICES = [
@@ -46,3 +46,15 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['photo','address', 'city', 'state', 'tel', 'role']
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['category', 'name', 'description', 'price']
+
+class ProductImageForm(forms.ModelForm):
+    class Meta:
+        model = ProductImage
+        fields = ['image']
+        

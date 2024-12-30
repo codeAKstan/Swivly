@@ -18,6 +18,7 @@
 
     <!-- Product Details -->
     <h1>{{ product.name }}</h1>
+    <h4>seller: {{ product.user }}</h4>
     <h2>
     </h2>
     <p class="price">Price: ₦{{ product.price }}</p>
@@ -34,29 +35,79 @@
 
 <!-- Additional Styling (Optional) -->
 <style>
+    .product-detail {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
     .product-images {
+        margin-bottom: 20px;
+    }
+
+    .image-gallery {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 10px;
+    }
+
+    .image-gallery img {
+        max-width: 200px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        font-size: 18px;
+        color: #777;
         margin-bottom: 20px;
     }
 
-    .product-images img {
-        max-width: 150px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .price {
+        font-size: 22px;
+        color: #4a90e2;
+        font-weight: bold;
+        margin: 20px 0;
     }
 
-    .product-detail h1,
-    .product-detail h2 {
-        margin: 10px 0;
+    .description {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 30px;
     }
 
-    .product-detail .price {
-        font-size: 1.5em;
-        color: #007b5e;
-        margin-bottom: 20px;
+    form button {
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+        background-color: #45a049;
     }
 </style>
 {% endblock %}

@@ -17,9 +17,22 @@ class ProductImageInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'price', 'available', 'created', 'updated']
-    list_filter = ['available', 'created', 'updated', 'category']
-    list_editable = ['price', 'available']
+    list_display = ['name', 'price', 'status', 'available', 'created', 'updated']
+    list_filter = ['available', 'status', 'category']
+    list_editable = ['price', 'available', 'status']
     search_fields = ['name', 'description']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ProductImageInline]
+    actions = ['approve_products', 'reject_products']
+
+    def approve_products(self, request, queryset):
+        queryset.update(status='approved', available=True)
+    approve_products.short_description = "Approve selected products"
+
+    def reject_products(self, request, queryset):
+        queryset.update(status='rejected', available=False)
+    reject_products.short_description = "Reject selected products"
+
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ['product', 'image']

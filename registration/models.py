@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.urls import reverse
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -56,14 +57,22 @@ class Category(models.Model):
         args=[self.slug])
 
 class Product(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending Approval'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+
     category = models.ForeignKey(Category, related_name='products',
                                  on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10,
     decimal_places=2)
-    available = models.BooleanField(default=True)
+    available = models.BooleanField(default=False)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -80,8 +89,15 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('registration:product_detail',
-                       args=[self.id, self.slug])
+        if not self.slug:
+            raise ValueError("Slug is missing for product: {}".format(self.name))
+        return reverse('registration:product_detail', args=[self.id, self.slug])
+
+    def save(self, *args, **kwargs):
+        if not self.slug:  # Generate slug if it's empty
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
     
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)

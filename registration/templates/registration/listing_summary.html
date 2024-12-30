@@ -1,0 +1,67 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{% block content %}
+<section class="listings-summary">
+    <h2>My Listings</h2>
+    <p>Approved Listings: {{ active_count }}</p>
+    <p>Pending Listings: {{ pending_count }}</p>
+    <p>Rejected Listings: {{ rejected_count }}</p>
+    <ul>
+        {% for product in products %}
+        <li>{{ product.name }} - {{ product.status }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<style>
+    .listings-summary {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .listings-summary h2 {
+        color: #4a90e2;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .listings-summary p {
+        font-size: 16px;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .listings-summary ul {
+        margin-top: 20px;
+        padding-left: 20px;
+        list-style-type: disc;
+    }
+
+    .listings-summary ul li {
+        font-size: 14px;
+        color: #555;
+        margin: 5px 0;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .listings-summary ul li:last-child {
+        border-bottom: none;
+    }
+
+    .listings-summary ul li span {
+        font-weight: bold;
+        color: #4a90e2;
+    }
+
+    .listings-summary ul li:hover {
+        background: #f1f1f1;
+        transition: background 0.3s;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="edit-profile-container">
+
+    <h2>Upload Product</h2>
+    <form method="post" enctype="multipart/form-data" class="add-product-form ">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <h3>Upload Images</h3>
+        {{ formset.management_form }}
+        {% for image_form in formset %}
+        {{ image_form.as_p }}
+        {% endfor %}
+        <button type="submit" class="btn primary">Add Product</button>
+    </form>
+</div>
+<style>
+    .edit-profile-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .edit-profile-container h2 {
+        color: #4a90e2;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .add-product-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-product-form h3 {
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .add-product-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .add-product-form input[type="text"],
+    .add-product-form input[type="file"],
+    .add-product-form textarea,
+    .add-product-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 14px;
+        color: #333;
+        transition: border-color 0.3s;
+    }
+
+    .add-product-form input[type="text"]:focus,
+    .add-product-form input[type="file"]:focus,
+    .add-product-form textarea:focus,
+    .add-product-form select:focus {
+        border-color: #4a90e2;
+        outline: none;
+    }
+
+    .add-product-form button {
+        padding: 10px 20px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .add-product-form button:hover {
+        background-color: #357ab8;
+    }
+
+    .add-product-form .btn.primary {
+        background-color: #5cb85c;
+    }
+
+    .add-product-form .btn.primary:hover {
+        background-color: #4cae4c;
+    }
+</style>
+
+{% endblock %}
