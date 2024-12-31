@@ -1,13 +1,14 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm
-from .models import Listing, Transaction, Profile, Category, Product, ProductImage
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm,  HouseForm, HouseImageForm
+from .models import Listing, Transaction, Profile, Category, Product, ProductImage, House, HouseImage
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 from orders.models import Order, OrderItem
 from django.forms import modelformset_factory
+from django import forms
 # Create your views here.
 
 # def index(request):
@@ -197,3 +198,35 @@ def listing_summary(request):
         'products': products,
     }
     return render(request, 'registration/listing_summary.html', context)
+
+
+def accommodation(request):
+    return render(request, 'registration/accommodation.html')
+
+@login_required
+def add_house(request):
+    if request.method == 'POST':
+        house_form = HouseForm(request.POST, request.FILES)
+        image_formset = forms.modelformset_factory(HouseImage, form=HouseImageForm, extra=3)
+        formset = image_formset(request.POST, request.FILES, queryset=HouseImage.objects.none())
+
+        if house_form.is_valid() and formset.is_valid():
+            house = house_form.save()
+
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    HouseImage.objects.create(house=house, image=image)
+
+            return redirect('accommodation_list')  # Redirect to accommodation list
+    else:
+        house_form = HouseForm()
+        image_formset = forms.modelformset_factory(HouseImage, form=HouseImageForm, extra=3)
+        formset = image_formset(queryset=HouseImage.objects.none())
+
+    return render(request, 'registration/add_house.html', {'house_form': house_form, 'formset': formset})
+
+
+def accommodation_list(request):
+    houses = House.objects.filter(is_available=True)
+    return render(request, 'registration/accommodation_list.html', {'houses': houses})

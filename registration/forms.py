@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, ProductImage, Product
+from .models import Profile, ProductImage, Product, House, HouseImage
 
 class UserRegisterForm(forms.ModelForm):
     ROLE_CHOICES = [
@@ -58,3 +58,13 @@ class ProductImageForm(forms.ModelForm):
         model = ProductImage
         fields = ['image']
         
+
+class HouseForm(forms.ModelForm):
+    class Meta:
+        model = House
+        fields = ['location', 'lodge_name', 'description', 'price', 'number_of_rooms', 'image', 'video']
+
+class HouseImageForm(forms.ModelForm):
+    class Meta:
+        model = HouseImage
+        fields = ['image']
