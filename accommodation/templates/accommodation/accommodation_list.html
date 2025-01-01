@@ -1,0 +1,110 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="accommodation-list">
+    {% for house in houses %}
+    <div class="house-card">
+        <h3>{{ house.lodge_name }}</h3>
+        <p>Location: {{ house.location.name }}</p>
+        <p>Price: ₦{{ house.price }}</p>
+        <p>Rooms: {{ house.number_of_rooms }}</p>
+        <p>Agent: {{ house.user.username }}</p>
+        <a href="{% url 'accommodation:house_detail' house.id %}" class="btn">View Details</a>
+
+        {% if house.image %}
+
+        <img src="{{ house.image.url }}" alt="{{ house.lodge_name }}" style="max-width: 300px;">
+        {% else %}
+        <img src="{% static 'img/no-pictures.png' %}" alt="No Image Available" style="max-width: 300px;">
+        {% endif %}
+        {% if house.video %}
+        <video controls style="max-width: 300px;">
+            <source src="{{ house.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+<style>
+    /* Container for the entire accommodation list */
+    .accommodation-list {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Individual house card */
+    .house-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .house-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Title styling */
+    .house-card h3 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Details and metadata */
+    .house-card p {
+        font-size: 14px;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    /* Image styling */
+    .house-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 10px 0;
+    }
+
+    /* Video styling */
+    .house-card video {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 10px 0;
+        outline: none;
+    }
+
+    /* Responsive design */
+    @media screen and (max-width: 768px) {
+        .accommodation-list {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Highlight the total count */
+    .accommodation-list>p {
+        grid-column: 1 / -1;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="house-detail">
+    <h1>{{ house.lodge_name }}</h1>
+    <p><strong>Location:</strong> {{ house.location.name }}</p>
+    <p><strong>Price:</strong> ₦{{ house.price }}</p>
+    <p><strong>Rooms:</strong> {{ house.number_of_rooms }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ house.description|linebreaks }}</p>
+
+    <!-- Display the main image -->
+    {% if house.image %}
+    <img src="{{ house.image.url }}" alt="{{ house.lodge_name }}" style="max-width: 500px;">
+    {% else %}
+    <p>No Image Available</p>
+    {% endif %}
+
+    <!-- Display related images -->
+    {% if house.images.all %}
+    <div class="house-gallery">
+        {% for image in house.images.all %}
+        <img src="{{ image.image.url }}" alt="Additional Image" style="max-width: 200px; margin: 10px;">
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Display video if available -->
+    {% if house.video %}
+    <video controls style="max-width: 500px;">
+        <source src="{{ house.video.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% endif %}
+</div>
+
+<style>
+    .house-detail {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .house-detail h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .house-detail p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .house-gallery img {
+        border-radius: 8px;
+        display: inline-block;
+    }
+</style>
+{% endblock %}

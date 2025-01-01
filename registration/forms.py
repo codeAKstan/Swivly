@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, ProductImage, Product, House, HouseImage
+from .models import Profile, ProductImage, Product
 
 class UserRegisterForm(forms.ModelForm):
     ROLE_CHOICES = [

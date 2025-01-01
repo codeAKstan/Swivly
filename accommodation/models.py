@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -12,6 +13,7 @@ class Location(models.Model):
 
 
 class House(models.Model):
+    user = models.ForeignKey(User, related_name='houses', on_delete=models.CASCADE)
     location = models.ForeignKey(Location, related_name='houses', on_delete=models.CASCADE)
     lodge_name = models.CharField(max_length=200)
     description = models.TextField()

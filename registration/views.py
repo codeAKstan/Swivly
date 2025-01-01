@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm,  HouseForm, HouseImageForm
-from .models import Listing, Transaction, Profile, Category, Product, ProductImage, House, HouseImage
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm
+from .models import Listing, Transaction, Profile, Category, Product, ProductImage
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
