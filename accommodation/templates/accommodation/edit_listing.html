@@ -1,0 +1,66 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<div class="add-house-container">
+    <h2>Edit Listing: {{ house.lodge_name }}</h2>
+    <form method="post" enctype="multipart/form-data" class="add-house-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn primary">Update Listing</button>
+    </form>
+</div>
+<style>
+    .add-house-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .add-house-container h2 {
+        text-align: center;
+        color: #4a90e2;
+        margin-bottom: 20px;
+    }
+
+    .add-house-form h3 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    .add-house-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .add-house-form input[type="text"],
+    .add-house-form textarea,
+    .add-house-form input[type="file"],
+    .add-house-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .add-house-form button {
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-house-form button:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}

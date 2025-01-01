@@ -1,0 +1,36 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<div class="confirm-delete">
+    <h2>Are you sure you want to delete "{{ house.lodge_name }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn danger">Yes, Delete</button>
+        <a href="{% url 'accommodation:listing_summary' %}" class="btn">Cancel</a>
+    </form>
+</div>
+<style>
+    .btn {
+        display: inline-block;
+        padding: 8px 15px;
+        margin: 5px;
+        background: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .btn:hover {
+        background: #45a049;
+    }
+
+    .btn.danger {
+        background: #f44336;
+    }
+
+    .btn.danger:hover {
+        background: #e53935;
+    }
+</style>
+
+{% endblock %}

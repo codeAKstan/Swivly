@@ -40,7 +40,15 @@
 
     <div class="profile-content">
         <!-- Listings Summary (for Sellers or Agents) -->
-        {% if user.profile.role == "agent" or user.profile.role == "seller" %}
+        {% if user.profile.role == "agent" %}
+        <section class="listings-summary">
+            <h2>Listings Summary</h2>
+            <a href="{% url 'accommodation:listing_summary' %}" class="btn primary">View listings</a>
+
+            <a href="{% url 'accommodation:add_house' %}" class="btn primary">Add New Listing</a>
+        </section>
+        {% endif %}
+        {% if user.profile.role == "seller" %}
         <section class="listings-summary">
             <h2>Listings Summary</h2>
             <a href="{% url 'registration:listing_summary' %}" class="btn primary">View listings</a>

@@ -1,0 +1,69 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="listings-summary">
+    <h2>My Listings</h2>
+    <p><strong>Active Listings:</strong> {{ active_count }}</p>
+    <p><strong>Pending Listings:</strong> {{ pending_count }}</p>
+    <p><strong>Rejected Listings:</strong> {{ rejected_count }}</p>
+
+    <h3>Manage Listings</h3>
+
+
+    <h3>All Listings</h3>
+    <ul>
+        {% for house in houses %}
+        <li>
+            <strong>{{ house.lodge_name }}</strong> - {{ house.is_available|yesno:"Active,Inactive" }}
+            <a href="{% url 'accommodation:house_detail' house.id %}">View</a>
+            <a href="{% url 'accommodation:edit_listing' house.id %}" class="btn">Edit</a>
+            <a href="{% url 'accommodation:delete_listing' house.id %}" class="btn danger">Delete</a>
+        </li>
+        {% empty %}
+        <p>No listings available.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    .listings-summary {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .listings-summary h2,
+    .listings-summary h3 {
+        color: #4CAF50;
+    }
+
+    .listings-summary p {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .listings-summary ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .listings-summary li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    .listings-summary li a {
+        color: #625aff;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .listings-summary li a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

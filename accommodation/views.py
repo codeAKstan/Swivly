@@ -49,3 +49,55 @@ def accommodation_list(request):
 def house_detail(request, house_id):
     house = get_object_or_404(House, id=house_id)
     return render(request, 'accommodation/house_detail.html', {'house': house})
+
+
+@login_required
+def listing_summary(request):
+    # Ensure only agents can access this page
+    if request.user.profile.role != "agent":
+        return render(request, 'accommodation/not_authorized.html')
+
+    # Filter houses by the current logged-in agent
+    houses = House.objects.filter(user=request.user)
+
+    # Count listings by status
+    active_count = houses.filter(is_available=True).count()
+    pending_count = houses.filter(is_available=False, created__isnull=False).count()
+    rejected_count = houses.filter(is_available=False, created__isnull=True).count()
+
+    context = {
+        'houses': houses,
+        'active_count': active_count,
+        'pending_count': pending_count,
+        'rejected_count': rejected_count,
+    }
+    return render(request, 'accommodation/listing_summary.html', context)
+
+
+@login_required
+def edit_listing(request, house_id):
+    # Fetch the house for the logged-in agent
+    house = get_object_or_404(House, id=house_id, user=request.user)
+
+    if request.method == 'POST':
+        form = HouseForm(request.POST, request.FILES, instance=house)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Listing updated successfully!")
+            return redirect('accommodation:listing_summary')
+    else:
+        form = HouseForm(instance=house)
+
+    return render(request, 'accommodation/edit_listing.html', {'form': form, 'house': house})
+
+@login_required
+def delete_listing(request, house_id):
+    # Fetch the house for the logged-in agent
+    house = get_object_or_404(House, id=house_id, user=request.user)
+
+    if request.method == 'POST':
+        house.delete()
+        messages.success(request, "Listing deleted successfully!")
+        return redirect('accommodation:listing_summary')
+
+    return render(request, 'accommodation/confirm_delete.html', {'house': house})
