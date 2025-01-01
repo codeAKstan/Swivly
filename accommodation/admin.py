@@ -9,9 +9,9 @@ class HouseImageInline(admin.TabularInline):
 
 @admin.register(House)
 class HouseAdmin(admin.ModelAdmin):
-    list_display = ['lodge_name', 'location', 'price', 'number_of_rooms', 'is_available', 'created']
+    list_display = ['lodge_name', 'location', 'price', 'number_of_rooms', 'is_available','status', 'created']
     list_filter = ['is_available', 'location']
-    list_editable = ['is_available']
+    list_editable = ['is_available', 'status']
     search_fields = ['lodge_name', 'description']
     inlines = [HouseImageInline]
 

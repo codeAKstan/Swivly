@@ -32,7 +32,7 @@ def add_house(request):
                     image = form['image']
                     HouseImage.objects.create(house=house, image=image)
 
-            messages.success(request, "House added successfully!")
+            messages.success(request, "House added successfully!, awaiting approval")
             return redirect('accommodation:accommodation_list')
     else:
         house_form = HouseForm()

@@ -13,13 +13,19 @@ class Location(models.Model):
 
 
 class House(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending Approval'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
     user = models.ForeignKey(User, related_name='houses', on_delete=models.CASCADE)
     location = models.ForeignKey(Location, related_name='houses', on_delete=models.CASCADE)
     lodge_name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     number_of_rooms = models.PositiveIntegerField()
-    is_available = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=False)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') 
     image = models.ImageField(upload_to='houses/%Y/%m/%d', blank=True)
     video = models.FileField(upload_to='houses/videos/%Y/%m/%d', blank=True)
     created = models.DateTimeField(auto_now_add=True)
