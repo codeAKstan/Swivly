@@ -1,0 +1,46 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<h2>Conversation</h2>
+<div class="messages">
+    {% for message in messages %}
+    <div class="message {% if message.sender == user %}sent{% else %}received{% endif %}">
+        <strong>{{ message.sender.username }}</strong>: {{ message.content }}
+    </div>
+    {% endfor %}
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <textarea name="content" rows="3" placeholder="Type your message..."></textarea>
+    <button type="submit">Send</button>
+</form>
+<style>
+    .messages {
+        border: 1px solid #ddd;
+        padding: 10px;
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    .message {
+        margin: 5px 0;
+    }
+
+    .message.sent {
+        text-align: right;
+        color: blue;
+    }
+
+    .message.received {
+        text-align: left;
+        color: green;
+    }
+
+    textarea {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+</style>
+
+{% endblock %}

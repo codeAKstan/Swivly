@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from orders.models import Order, OrderItem
 from django.forms import modelformset_factory
 from django import forms
+from django.db import IntegrityError
 # Create your views here.
 
 # def index(request):
@@ -20,6 +21,7 @@ def about_us(request):
                   'registration/about.html')
 
 # register view
+
 def register(request):
     role = request.GET.get('role')
     if request.method == 'POST':
@@ -29,15 +31,21 @@ def register(request):
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
             login_form = AuthenticationForm()
-            Profile.objects.create(user=new_user)
+
+            # Ensure the profile does not already exist
+            try:
+                Profile.objects.create(user=new_user, role=form.cleaned_data['role'])
+            except IntegrityError:
+                messages.success(request, "profile created login.")
+                return render(request, 'registration/login.html', {'form': login_form})
+
             return render(request, 'registration/login.html', {'new_user': new_user, 'form': login_form})
         else:
-            return render(request, 'registration/register.html',
-                      {'form':form})
+            return render(request, 'registration/register.html', {'form': form})
     else:
         form = UserRegisterForm()
-        return render(request, 'registration/register.html',
-                      {'form':form})
+        return render(request, 'registration/register.html', {'form': form})
+
     
 
 @login_required
