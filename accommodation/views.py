@@ -43,13 +43,16 @@ def add_house(request):
 
 
 def accommodation_list(request):
-    houses = House.objects.filter(is_available=True)  # Only fetch available houses
+    houses = House.objects.filter(is_available=True) 
     return render(request, 'accommodation/accommodation_list.html', {'houses': houses})
 
 def house_detail(request, house_id):
     house = get_object_or_404(House, id=house_id)
-    return render(request, 'accommodation/house_detail.html', {'house': house})
-
+    agent = house.user 
+    return render(request, 'accommodation/house_detail.html', {
+        'house': house,
+        'agent': agent,
+    })
 
 @login_required
 def listing_summary(request):

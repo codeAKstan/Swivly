@@ -1,6 +1,7 @@
 {% extends 'registration/base.html' %}
 {% block content %}
-<h2>Conversation</h2>
+<h2>Conversation with {% for participant in conversation.participants.all %}{% if participant != user %}{{
+    participant.username }}{% endif %}{% endfor %}</h2>
 <div class="messages">
     {% for message in messages %}
     <div class="message {% if message.sender == user %}sent{% else %}received{% endif %}">
@@ -14,6 +15,7 @@
     <textarea name="content" rows="3" placeholder="Type your message..."></textarea>
     <button type="submit">Send</button>
 </form>
+
 <style>
     .messages {
         border: 1px solid #ddd;

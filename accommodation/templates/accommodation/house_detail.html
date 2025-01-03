@@ -37,7 +37,7 @@
     <!-- Contact Agent Button -->
     <div class="contact-agent">
         <h3>Contact Agent</h3>
-        <a href="{% url 'chat:start_conversation' user.id %}" class="btn primary">Message Agent</a>
+        <a href="{% url 'chat:start_conversation' agent.id %}" class="btn primary">Message Agent</a>
         <a href="tel:{{ house.user.profile.tel }}" class="btn">Call Agent</a>
     </div>
 </div>
