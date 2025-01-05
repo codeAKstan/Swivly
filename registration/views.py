@@ -208,3 +208,7 @@ def listing_summary(request):
     return render(request, 'registration/listing_summary.html', context)
 
 
+def services(request):
+    return render(request, 'registration/services.html')
+
+

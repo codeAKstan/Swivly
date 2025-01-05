@@ -1,0 +1,145 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="services-page">
+    <!-- service-hero Section -->
+    <section class="service-hero">
+        <h1>Find and Offer Services</h1>
+        <p>Looking for a professional? Find the service you need or post one you offer.</p>
+        <a href="" class="btn primary">Post a Service</a>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filters">
+        <form method="get" action="">
+            <input type="text" name="search" placeholder="Search services..." value="{{ request.GET.search }}">
+            <select name="category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                <option {% if c.is_selected %}class="selected" {% endif %}>
+                    {{ category.name }}
+                </option>
+                {% endfor %}
+            </select>
+            <select name="location">
+                <option value="">All Locations</option>
+                {% for location in locations %}
+                <option {% if c.is_selected %}class="selected" {% endif %}>
+                    {{ location.name }}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn">Filter</button>
+        </form>
+    </section>
+
+    <!-- Services List -->
+    <section class="service-list">
+        {% for service in services %}
+        <div class="service-card">
+            <h3>{{ service.name }}</h3>
+            <p><strong>Provider:</strong> {{ service.user.username }}</p>
+            <p><strong>Category:</strong> {{ service.category.name }}</p>
+            <p><strong>Location:</strong> {{ service.location.name }}</p>
+            <p><strong>Price:</strong> ₦{{ service.price }}</p>
+            <p>{{ service.description|truncatewords:15 }}</p>
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.name }}" style="max-width: 100%; border-radius: 8px;">
+            {% endif %}
+            <a href="{% url 'services:service_detail' service.id %}" class="btn secondary">View Details</a>
+        </div>
+        {% empty %}
+        <p>No services found. Be the first to post one!</p>
+        {% endfor %}
+    </section>
+</div>
+
+<style>
+    .services-page {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f9f9f9;
+    }
+
+    .service-hero {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .service-hero h1 {
+        font-size: 28px;
+        color: #333;
+    }
+
+    .service-hero p {
+        color: #666;
+        font-size: 16px;
+        margin: 10px 0 20px;
+    }
+
+    .service-hero .btn {
+        padding: 10px 20px;
+        background: #625aff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .filters {
+        margin-bottom: 20px;
+    }
+
+    .filters form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filters select,
+    .filters input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .service-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .service-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .service-card p {
+        font-size: 14px;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .service-card img {
+        margin-top: 10px;
+        max-height: 150px;
+    }
+
+    .service-card .btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #625aff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
