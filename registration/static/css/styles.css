@@ -341,7 +341,7 @@ body {
 }
 
 .product-card {
-    background-color: #fff;
+    background-color: #625aff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(97, 117, 202, 0.1);
     text-align: center;
@@ -355,6 +355,7 @@ body {
     background-color: #fff;
     /* background-repeat: no-repeat; */
     border-radius: 19px;
+    height: 25vh;
 }
 
 .product-card .curve {
@@ -408,11 +409,11 @@ body {
 }
 
 .product-card .content {
-    color: #625aff;
+    color: #fff;
 }
 
 .product-card .content .price {
-    color: #000;
+    color: #fff;
 }
 
 .product-card .content .badge2 {
@@ -455,7 +456,7 @@ body {
     padding: 0.5rem;
     font-size: 1rem;
     border: 2px solid #ccc;
-    border-radius: 5px 0 0 5px;
+    border-radius: 30px;
     outline: none;
 }
 

@@ -47,9 +47,9 @@
         </aside>
         <div class="products-section">
             <div class="search-bar">
-                <form action="" method="get" class="shop-search-btn">
+                <form action="" method="get" class="">
                     <input type="text" name="search" placeholder="Search for products...">
-                    <button>➤</button>
+                    <!-- <button class="shop-search-btn">➤</button> -->
                 </form>
             </div>
             <div class="btn cart">
@@ -60,7 +60,6 @@
                     {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
                 </a>
                 {% else %}
-                Your cart is empty.
                 {% endif %}
                 {% endwith %}
             </div>
