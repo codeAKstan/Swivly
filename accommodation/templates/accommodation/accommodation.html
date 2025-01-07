@@ -2,76 +2,290 @@
 {% load static %}
 
 {% block content %}
-<section class="hero">
+<section class="accommodation-hero">
     <h1>Find Your Perfect Accommodation</h1>
-    <form class="search-bar">
-        <select>
-            <option value="">Type</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
+    <div class="accommodation-actions">
+        <a href="{% url 'accommodation:add_house' %}" class="btn">Add New Accommodation</a>
+        <a href="{% url 'accommodation:accommodation_list' %}" class="btn secondary">View Accommodations</a>
+    </div>
+</section>
+
+<section class="search-filters">
+    <form method="get" action="{% url 'accommodation:accommodation_list' %}">
+        <input type="text" name="search" placeholder="Search by location or lodge name">
+        <select name="location">
+            <option value="">All Locations</option>
+            {% for location in locations %}
+            <option value="{{ location.id }}">{{ location.name }}</option>
+            {% endfor %}
         </select>
-        <button type="submit">Search</button>
+        <input type="number" name="min_price" placeholder="Min Price">
+        <input type="number" name="max_price" placeholder="Max Price">
+        <button type="submit" class="btn">Search</button>
     </form>
 </section>
 
-<a href="{% url 'accommodation:add_house' %}">Add New Accommodation</a>
-<a href="{% url 'accommodation:accommodation_list' %}">View Accommodations</a>
+
+<div class="testimonials">
+    <h2>What Students Are Saying</h2>
+</div>
+<section class="testimonials">
+    <div class="testimonial">
+        <p>"Found the perfect lodge near campus, and the process was seamless!"</p>
+        <p>- Jane Doe</p>
+    </div>
+    <div class="testimonial">
+        <p>"Found the perfect lodge near campus, and the process was seamless!"</p>
+        <p>- Jane Doe</p>
+    </div>
+    <div class="testimonial">
+        <p>"Found the perfect lodge near campus, and the process was seamless!"</p>
+        <p>- Jane Doe</p>
+    </div>
+
+</section>
+
+<section class="stats">
+    <div class="stat">
+        <h3>500+</h3>
+        <p>Accommodations Listed</p>
+    </div>
+    <div class="stat">
+        <h3>1,000+</h3>
+        <p>Happy Students</p>
+    </div>
+    <div class="stat">
+        <h3>24/7</h3>
+        <p>Support Available</p>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Are You an Agent?</h2>
+    <p>Join us and list your accommodations for students!</p>
+    <a href="{% url 'accommodation:add_house' %}" class="btn primary">Add Accommodation</a>
+</section>
+<section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="question">
+        <h3>How do I contact an agent?</h3>
+        <p>Click on "Contact Agent" on the accommodation detail page.</p>
+    </div>
+</section>
 
 <style>
+    /* Hero Section */
     .accommodation-hero {
-        background: url('banner.jpg') no-repeat center center/cover;
-        text-align: center;
+        background: url("{% static 'img/accommodation-bg.jpg' %}") no-repeat center center/cover;
         color: white;
-        padding: 50px 20px;
+        text-align: center;
+        padding: 60px 20px;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
     }
 
-    .search-bar {
+    .accommodation-hero h1 {
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        margin: 0;
+    }
+
+    .accommodation-actions {
+        text-align: center;
         margin-top: 20px;
-        display: flex;
-        gap: 10px;
-        justify-content: center;
+        font-family: 'Arial', sans-serif;
     }
 
-    .search-bar input,
-    .search-bar select,
-    .search-bar button {
+    .accommodation-actions p {
+        font-size: 18px;
+        font-weight: bolder;
+        color: #000;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .accommodation-actions .btn {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background: #625aff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .accommodation-actions .btn.secondary {
+        background: #FFA500;
+    }
+
+    .accommodation-actions .btn:hover {
+        background: #503ccc;
+    }
+
+    .accommodation-actions .btn.secondary:hover {
+        background: #FF8C00;
+    }
+
+    .search-filters {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-filters form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .search-filters input,
+    .search-filters select,
+    .search-filters button {
+        flex: 1;
         padding: 10px;
         font-size: 16px;
-    }
-
-    .accommodation-listings {
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .listing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-    }
-
-    .listing {
-        background: #f9f9f9;
         border: 1px solid #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-        text-align: center;
-        padding: 10px;
+        border-radius: 5px;
     }
 
-    .listing img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
+    .search-filters button {
+        background: #625aff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
     }
 
-    .inquiry-form {
-        background: #f1f1f1;
+    .search-filters button:hover {
+        background: #503ccc;
+    }
+
+
+
+
+
+
+    .testimonials {
+        margin: 40px auto;
         padding: 20px;
-        margin: 30px auto;
-        border-radius: 10px;
-        max-width: 600px;
+        background: #fefefe;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial {
+        font-style: italic;
+        font-size: 18px;
+        margin: 20px 0;
+        color: #555;
+    }
+
+    .testimonial p:last-child {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 40px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .stat {
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .stat h3 {
+        font-size: 32px;
+        color: #625aff;
+        margin-bottom: 10px;
+    }
+
+    .stat p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .cta {
+        margin: 40px auto;
+        padding: 20px;
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        text-align: center;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .cta p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .cta .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #FFA500;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .cta .btn:hover {
+        background: #FF8C00;
+    }
+
+    .map {
+        margin: 40px auto;
+        text-align: center;
+    }
+
+    .map iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq {
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq .question {
+        margin-bottom: 20px;
+    }
+
+    .faq h3 {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .faq p {
+        font-size: 16px;
+        color: #555;
     }
 </style>
 {% endblock %}
