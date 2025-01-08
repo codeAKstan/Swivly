@@ -168,9 +168,17 @@ body {
     color: #000;
 }
 
+.cta-buttons .btn.primary a {
+    text-decoration: none;
+}
+
 .cta-buttons .btn.secondary {
     background-color: #fff;
     color: #6666ff;
+}
+
+.cta-buttons .btn.secondary a {
+    text-decoration: none;
 }
 
 /* Responsive Styles */
@@ -609,6 +617,10 @@ body {
         float: right;
     }
 
+    .product-card .content .price {
+        color: #000;
+    }
+
     .filter-mob {
         display: block;
     }
@@ -643,7 +655,7 @@ body {
     }
 
     .filter-mob li.selected {
-        background: #f0f0f0;
+        background: #625aff;
         border-color: #bbb;
     }
 
@@ -1027,7 +1039,7 @@ body {
 
 /* Footer Section */
 .footer {
-    background-color: #1e1e2f;
+    background-color: #625aff;
     color: white;
     padding: 2rem 1rem;
     bottom: 0;
@@ -1121,6 +1133,10 @@ body {
         cursor: pointer;
         font-size: 0.6rem;
         width: 120px;
+    }
+
+    .right-div button a {
+        text-decoration: none;
     }
 
     .right-div ul {

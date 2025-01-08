@@ -9,8 +9,9 @@
         <p>Search accommodations, buy, sell your new or used properties and connect with ease the student way
         </p>
         <div class="cta-buttons">
-            <button class="btn primary">List Your Property</button>
-            <button class="btn secondary">Explore Now</button>
+            <button class="btn primary"><a href="{% url 'accommodation:add_house' %}">List Your Property</a></button>
+            <button class="btn secondary"><a href="{% url 'accommodation:accommodation_list' %}">Explore
+                    Now</a></button>
         </div>
     </div>
 </section>
@@ -283,8 +284,9 @@
     </div>
 
     <div class="right-div">
-        <button>List Your Property</button>
-        <button>Explore Now</button>
+        <button class="btn primary"><a href="{% url 'accommodation:add_house' %}">List Your Property</a></button>
+        <button class="btn secondary"><a href="{% url 'accommodation:accommodation_list' %}">Explore
+                Now</a></button>
 
         <ul>
             <li><a href="/marketplace">Contact Us</a></li>
