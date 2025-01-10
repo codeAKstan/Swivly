@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Category, Product, ProductImage
+from .models import Profile, Category, Product, ProductImage, Service, ServiceCategory
 
 
 # Register your models here.
@@ -40,3 +40,14 @@ class ProductImageAdmin(admin.ModelAdmin):
 
 
 
+
+@admin.register(ServiceCategory)
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'price', 'created_by', 'created_at')
+    list_filter = ('category', 'created_at')
+    search_fields = ('title', 'description', 'location')

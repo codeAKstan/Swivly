@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile, ProductImage, Product
+from .models import Service, ServiceCategory
 
 class UserRegisterForm(forms.ModelForm):
     ROLE_CHOICES = [
@@ -59,3 +60,16 @@ class ProductImageForm(forms.ModelForm):
         fields = ['image']
         
 
+
+class ServiceForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=ServiceCategory.objects.all(),
+        empty_label="Select a Category"
+    )
+
+    class Meta:
+        model = Service
+        fields = ['title', 'description', 'category', 'price', 'location']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }

@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm, ServiceForm
 from .models import Listing, Transaction, Profile, Category, Product, ProductImage
 from django.contrib import messages
 from django.db.models import Q
@@ -210,5 +210,19 @@ def listing_summary(request):
 
 def services(request):
     return render(request, 'registration/services.html')
+
+@login_required
+def add_service(request):
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+        if form.is_valid():
+            service = form.save(commit=False)
+            service.created_by = request.user
+            service.save()
+            return redirect('registration:services')
+    else:
+        form = ServiceForm()
+    return render(request, 'registration/add_service.html', {'form': form})
+
 
 
