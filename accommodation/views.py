@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import House, HouseImage
+from .models import House, HouseImage, Location
 from .forms import HouseForm, HouseImageForm
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -44,7 +44,13 @@ def add_house(request):
 
 def accommodation_list(request):
     houses = House.objects.filter(is_available=True) 
-    return render(request, 'accommodation/accommodation_list.html', {'houses': houses})
+    locations = Location.objects.all()
+
+    context = {
+        'houses': houses,
+        'locations': locations,
+    }
+    return render(request, 'accommodation/accommodation_list.html', context)
 
 def house_detail(request, house_id):
     house = get_object_or_404(House, id=house_id)
