@@ -43,12 +43,29 @@ def add_house(request):
 
 
 def accommodation_list(request):
-    houses = House.objects.filter(is_available=True) 
+    houses = House.objects.filter(is_available=True)
+    location_id = request.GET.get('location')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+    if location_id:
+        houses = houses.filter(location_id=location_id)
+    if min_price:
+        houses = houses.filter(price__gte=min_price)
+    if max_price:
+        houses = houses.filter(price__lte=max_price)
+
     locations = Location.objects.all()
+
+
+    for location in locations:
+        location.is_selected = str(location.id) == location_id
 
     context = {
         'houses': houses,
         'locations': locations,
+        'min_price': min_price or '',
+        'max_price': max_price or '',
     }
     return render(request, 'accommodation/accommodation_list.html', context)
 
