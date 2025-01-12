@@ -46,7 +46,7 @@
             {% if service.image %}
             <img src="{{ service.image.url }}" alt="{{ service.name }}" style="max-width: 100%; border-radius: 8px;">
             {% endif %}
-            <a href="{% url 'services:service_detail' service.id %}" class="btn secondary">View Details</a>
+            <a href="{% url 'registration:service_detail' service.id %}" class="btn secondary">View Details</a>
         </div>
         {% empty %}
         <p>No services found. Be the first to post one!</p>
