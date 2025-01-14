@@ -38,7 +38,7 @@
         {% for service in services %}
         <div class="service-card">
             <h3>{{ service.name }}</h3>
-            <p><strong>Provider:</strong> {{ service.user.username }}</p>
+            <p><strong>Provider:</strong> {{ service.created_by.username }}</p>
             <p><strong>Category:</strong> {{ service.category.name }}</p>
             <p><strong>Location:</strong> {{ service.location.name }}</p>
             <p><strong>Price:</strong> ₦{{ service.price }}</p>

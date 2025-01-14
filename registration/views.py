@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, ProductForm, ProductImageForm, ServiceForm
-from .models import Listing, Transaction, Profile, Category, Product, ProductImage, Service
+from .models import Listing, Transaction, Profile, Category, Product, ProductImage, Service, ServiceCategory
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -210,8 +210,10 @@ def listing_summary(request):
 
 def services(request):
     services = Service.objects.all()
+    categories = ServiceCategory.objects.all()
     return render(request, 'registration/services.html',
-                  {'services': services})
+                  {'services': services,
+                   'categories': categories})
 def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
 
