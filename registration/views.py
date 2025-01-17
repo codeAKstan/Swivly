@@ -211,6 +211,16 @@ def listing_summary(request):
 def services(request):
     services = Service.objects.all()
     categories = ServiceCategory.objects.all()
+
+    search_term = request.GET.get('search')
+    category_id = request.GET.get('category')
+
+    if search_term:
+        services = services.filter(
+            Q(title__icontains=search_term) | Q(description__icontains=search_term)
+        )
+    if category_id:
+        services = services.filter(category_id=category_id)
     return render(request, 'registration/services.html',
                   {'services': services,
                    'categories': categories})
