@@ -1,0 +1,10 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<h2>Payment Required</h2>
+<p>You need to pay a fee of ₦500 to post a service.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn primary">Pay Now</button>
+</form>
+{% endblock %}

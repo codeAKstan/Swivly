@@ -10,6 +10,8 @@ from orders.models import Order, OrderItem
 from django.forms import modelformset_factory
 from django import forms
 from django.db import IntegrityError
+import requests
+from django.conf import settings
 # Create your views here.
 
 # def index(request):
@@ -232,6 +234,10 @@ def service_detail(request, service_id):
 
 @login_required
 def add_service(request):
+    if not request.user.profile.has_paid:
+        messages.error(request, "You must pay the service fee before adding a service.")
+        return redirect('registration:payment_page')
+
     if request.method == 'POST':
         form = ServiceForm(request.POST)
         if form.is_valid():
@@ -245,3 +251,36 @@ def add_service(request):
 
 
 
+@login_required
+def payment_page(request):
+    if request.method == "POST":
+        payment_data = {
+            "email": request.user.email,
+            "amount": 500 * 100,
+            "callback_url": request.build_absolute_uri('/payment/callback/'),
+        }
+        response = requests.post("https://api.paystack.co/transaction/initialize", json=payment_data, headers={
+            "Authorization":  f"Bearer {settings.PAYSTACK_SECRET_KEY}"
+        })
+        response_data = response.json()
+        if response_data["status"]:
+            return redirect(response_data["data"]["authorization_url"])
+        else:
+            messages.error(request, "Payment failed. Please try again.")
+    return render(request, 'registration/payment_page.html')
+
+@login_required
+def payment_callback(request):
+    payment_ref = request.GET.get('reference')
+    response = requests.get(f"https://api.paystack.co/transaction/verify/{payment_ref}", headers={
+        "Authorization":  f"Bearer {settings.PAYSTACK_SECRET_KEY}"
+    })
+    response_data = response.json()
+    if response_data["status"] and response_data["data"]["status"] == "success":
+        request.user.profile.has_paid = True
+        request.user.profile.save()
+        messages.success(request, "Payment successful! You can now add services.")
+        return redirect('registration:add_service')
+    else:
+        messages.error(request, "Payment verification failed. Please try again.")
+        return redirect('registration:payment_page')

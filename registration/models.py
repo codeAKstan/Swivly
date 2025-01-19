@@ -20,6 +20,7 @@ class Profile(models.Model):
         address = models.CharField(max_length=200, null=True)
         city = models.CharField(max_length=100, blank=True)
         state = models.CharField(max_length=100, blank=True)
+        has_paid = models.BooleanField(default=False)
         tel = PhoneNumberField(null=True, blank=True)
 
         def __str__(self):
