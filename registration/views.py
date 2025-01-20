@@ -12,6 +12,8 @@ from django import forms
 from django.db import IntegrityError
 import requests
 from django.conf import settings
+from django.http import HttpResponseRedirect, JsonResponse
+
 # Create your views here.
 
 # def index(request):
@@ -234,16 +236,16 @@ def service_detail(request, service_id):
 
 @login_required
 def add_service(request):
-    if not request.user.profile.has_paid:
-        messages.error(request, "You must pay the service fee before adding a service.")
-        return redirect('registration:payment_page')
-
+    if not request.session.get('has_paid', False):
+        return HttpResponseRedirect('/pay/')
     if request.method == 'POST':
         form = ServiceForm(request.POST)
         if form.is_valid():
             service = form.save(commit=False)
             service.created_by = request.user
             service.save()
+            # Reset the payment session after successfully adding a service
+            request.session['has_paid'] = False
             return redirect('registration:services')
     else:
         form = ServiceForm()
@@ -253,34 +255,48 @@ def add_service(request):
 
 @login_required
 def payment_page(request):
-    if request.method == "POST":
-        payment_data = {
-            "email": request.user.email,
-            "amount": 500 * 100,
-            "callback_url": request.build_absolute_uri('/payment/callback/'),
-        }
-        response = requests.post("https://api.paystack.co/transaction/initialize", json=payment_data, headers={
-            "Authorization":  f"Bearer {settings.PAYSTACK_SECRET_KEY}"
-        })
-        response_data = response.json()
-        if response_data["status"]:
-            return redirect(response_data["data"]["authorization_url"])
-        else:
-            messages.error(request, "Payment failed. Please try again.")
-    return render(request, 'registration/payment_page.html')
+    paystack_url = "https://api.paystack.co/transaction/initialize"
+    headers = {
+        "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+        "Content-Type": "application/json",
+    }
+    data = {
+        "email": request.user.email,
+        "amount": 50000,
+        "callback_url": "http://127.0.0.1:8000/payment/callback/",
+    }
+
+    response = requests.post(paystack_url, headers=headers, json=data)
+    result = response.json()
+
+    if result.get("status") == True:
+        # Redirect to the Paystack payment page
+        payment_url = result["data"]["authorization_url"]
+        return HttpResponseRedirect(payment_url)
+    else:
+        return JsonResponse({"error": "Payment initialization failed"}, status=400)
+
 
 @login_required
 def payment_callback(request):
-    payment_ref = request.GET.get('reference')
-    response = requests.get(f"https://api.paystack.co/transaction/verify/{payment_ref}", headers={
-        "Authorization":  f"Bearer {settings.PAYSTACK_SECRET_KEY}"
-    })
-    response_data = response.json()
-    if response_data["status"] and response_data["data"]["status"] == "success":
-        request.user.profile.has_paid = True
-        request.user.profile.save()
-        messages.success(request, "Payment successful! You can now add services.")
-        return redirect('registration:add_service')
+    reference = request.GET.get('reference')
+    if not reference:
+        return JsonResponse({"error": "Transaction reference is missing"}, status=400)
+
+    # Verify the payment with Paystack
+    url = f"https://api.paystack.co/transaction/verify/{reference}"
+    headers = {
+        "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+    }
+    response = requests.get(url, headers=headers)
+    result = response.json()
+
+    if result.get("status") == True and result["data"]["status"] == "success":
+        # Payment is successful
+        # Set the session to indicate the user has paid
+        request.session['has_paid'] = True
+        # Redirect to the add service page
+        return HttpResponseRedirect('/add/')
     else:
-        messages.error(request, "Payment verification failed. Please try again.")
-        return redirect('registration:payment_page')
+        # Payment failed
+        return JsonResponse({"error": "Payment verification failed"}, status=400)
