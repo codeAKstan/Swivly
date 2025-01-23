@@ -14,7 +14,7 @@ from pathlib import Path
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wcty9n=727ukz%0s0r-319r$lce%a&#eowg_qvzrlkpnr!(&n2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -83,17 +83,6 @@ WSGI_APPLICATION = 'Swivly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'swivly_db',
-        'USER': 'postgres',
-        'PASSWORD': '554433',
-        'PORT': '5432',
-        'HOST': '127.0.0.1',
-        'PORT':'5432'
-    }
-}
 
 
 # Password validation
