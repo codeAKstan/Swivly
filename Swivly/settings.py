@@ -17,6 +17,11 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+import environ
+
+env = environ.Env()
+
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -24,13 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wcty9n=727ukz%0s0r-319r$lce%a&#eowg_qvzrlkpnr!(&n2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 
 
 ALLOWED_HOSTS = ['*']
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -42,6 +47,7 @@ DATABASES = {
         'PORT':'5432'
     }
 }
+'''
 # Application definition
 
 INSTALLED_APPS = [
@@ -161,3 +167,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'anigbomosesstan@gmail.com'
 EMAIL_HOST_PASSWORD = 'qjbi byjg ikdw eaqg '
+
+
+# render PostgreSQL db (live)
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URl'))
+}
