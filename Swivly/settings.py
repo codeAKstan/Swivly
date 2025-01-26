@@ -174,5 +174,5 @@ EMAIL_HOST_PASSWORD = 'qjbi byjg ikdw eaqg '
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URl'))
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
