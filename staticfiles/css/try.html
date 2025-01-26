@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Swivly</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #4b0082;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .shop-hero {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+
+        /* Shop Container */
+        .shop-container {
+            display: flex;
+            margin: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 20%;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        /* Products */
+        .products {
+            width: 75%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .shop-product-card {
+            background: white;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .shop-product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo">Swivly</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Cart</a>
+            <a href="#">Profile</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="shop-hero">
+        <h1>Welcome to Swivly Marketplace</h1>
+        <p>Discover the best deals for students!</p>
+        <input type="text" placeholder="Search products..." class="search-bar">
+    </section>
+
+    <!-- Main Content -->
+    <main class="shop-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li>Electronics</li>
+                <li>Furniture</li>
+                <li>Books</li>
+                <li>Clothing</li>
+            </ul>
+            <h2>Filters</h2>
+            <div>
+                <label>Price Range</label>
+                <input type="range" min="0" max="1000">
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <section class="products">
+            <div class="product-card">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product Name</h3>
+                <p>$20.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Another Product</h3>
+                <p>$30.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Swivly. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
