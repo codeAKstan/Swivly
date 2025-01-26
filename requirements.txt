@@ -55,3 +55,4 @@ webencodings==0.5.1
 zopfli==0.2.3.post1
 uwsgi==2.0.20
 daphne==3.0.2
+daphne==3.0.2
