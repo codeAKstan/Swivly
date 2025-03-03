@@ -12,17 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-import environ
-
-env = environ.Env()
-
-environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -30,25 +24,11 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-wcty9n=727ukz%0s0r-319r$lce%a&#eowg_qvzrlkpnr!(&n2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-
-
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'swivly_db',
-        'USER': 'postgres',
-        'PASSWORD': '554433',
-        'PORT': '5432',
-        'HOST': '127.0.0.1',
-        'PORT':'5432'
-    }
-}
-'''
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -69,7 +49,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -104,6 +83,17 @@ WSGI_APPLICATION = 'Swivly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'swivly_db',
+        'USER': 'postgres',
+        'PASSWORD': '554433',
+        'PORT': '5432',
+        'HOST': '127.0.0.1',
+        'PORT':'5432'
+    }
+}
 
 
 # Password validation
@@ -141,12 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -163,8 +148,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
 
-PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY')
-PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
@@ -174,13 +159,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'anigbomosesstan@gmail.com'
 EMAIL_HOST_PASSWORD = 'qjbi byjg ikdw eaqg '
-
-
-# render PostgreSQL db (live)
-
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
-}
-
